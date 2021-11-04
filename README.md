@@ -4,8 +4,8 @@ Projet de l'UE HAI305I Programation Web.
 
 ## Auteurs
 
-- [@LavironPablo](https://gitlab.etu.umontpellier.fr/e20200001796)
-- [@CazorlaAxel](https://gitlab.etu.umontpellier.fr/e20200005672)
+- [Laviron Pablo](https://github.com/0lbap)
+- [Cazorla Axel](#)
 
 
 ## Installation
