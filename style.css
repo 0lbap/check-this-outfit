@@ -1,0 +1,83 @@
+body{
+    background-color: rgb(250, 250, 250);
+}
+
+.cardcontainer{
+    display: flex;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 90%;
+}
+
+.infocard{
+    margin: 0 auto;
+    background-color: transparent;
+    color: rgba(0, 0, 0, 0);
+}
+
+#ic1{
+    animation: cardfade 0.5s ease 0s 1;
+    animation-fill-mode: forwards;
+}
+
+#ic2{
+    animation: cardfade 0.5s ease 0.1s 1;
+    animation-fill-mode: forwards;
+}
+
+#ic3{
+    animation: cardfade 0.5s ease 0.2s 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes cardfade {
+    0%{
+        color: rgba(0, 0, 0, 0);
+        top: 100px;
+    }
+    100%{
+        color: black;
+        top: 0px;
+    }
+}
+
+.title{
+    margin-top: 50px;
+}
+
+#discoverh{
+    color: rgba(0, 0, 0, 0);
+    animation: discoverhfade 0.5s ease 1s;
+    animation-fill-mode: forwards;
+}
+
+#discoverbtn{
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0);
+    animation: discoverbtnfade 0.5s ease 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes discoverhfade {
+    0%{
+        color: rgba(0, 0, 0, 0);
+    }
+    100%{
+        color: black;
+    }
+}
+
+@keyframes discoverbtnfade {
+    0%{
+        color: rgba(0, 0, 0, 0);
+        background-color: rgba(0, 0, 0, 0);
+        border-color: rgba(0, 0, 0, 0);
+    }
+    100%{
+        color: white;
+        background-color: rgba(var(--bs-primary-rgb));
+        border-color: rgba(0, 0, 0, 0);
+    }
+}
