@@ -5,7 +5,7 @@ Projet de l'UE HAI305I Programation Web.
 ## Auteurs
 
 - [Laviron Pablo](https://github.com/0lbap)
-- [Cazorla Axel](#)
+- [Cazorla Axel](https://github.com/Ethazio)
 
 
 ## Installation
