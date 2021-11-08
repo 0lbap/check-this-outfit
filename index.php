@@ -15,8 +15,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Accueil</a>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Accueil</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="recherche.php">Produits</a>
