@@ -30,7 +30,7 @@
         <!-- <div><input class="input" type="text" id="datenaiss" name="datenaiss"placeholder="Votre date de naissance" onfocus="(this.type='date')" min="1900-01-01" max="2021-12-31" required></div><br> -->
         <div><input class="input" type="text" name="ville" id="ville" placeholder="Votre ville" required></div><br>
         <div><input class="input" type="text" name="adresse" id="adresse" placeholder="Votre adresse" required></div><br>
-        <div><input class="input" type="tel" name="telephone" id="tel" placeholder="Votre n° de téléphone" minlength="10" maxlength="10" required></div><br><br>
+        <div><input class="input" type="tel" name="telephone" id="tel" placeholder="Votre n° de téléphone" minlength="10" maxlength="10" pattern="[0-9]{10}" required></div><br><br>
         <div><input type="submit" name="creacompte" id="creacompte" value="Confirmer"></div><br><br>
     </form>
     <?php
