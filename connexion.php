@@ -46,7 +46,7 @@
               $_SESSION['prenom']=$userdata['prenom'];
               $_SESSION['nom']=$userdata['nom'];
               $_SESSION['adresse']=$userdata['adresse'];
-              header('location:espaceClient.php');
+              header('location:index.php');
             }else $erreur='<div class="alert alert-danger" role="alert">Identifiants incorrects</div>';
           }else $erreur='<div class="alert alert-warning" role="alert">Veuillez saisir tous les champs</div>';
 
