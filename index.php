@@ -9,7 +9,7 @@
     <title>Projet Web</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <img src="https://via.placeholder.com/30x30.png?text=LOGO" alt="LOGO">
@@ -59,25 +59,25 @@
             </div>
         </div>
     </nav>
-    <main>
+    <main class="container">
         <h2 class="text-center title">Bienvenue sur Projet Web.</h2>
-        <div class="row">
+        <div class="row p-5">
             <div class="cardcontainer">
-                <div class="card col-3 border-0 infocard" id="ic1">
+                <div class="card col-lg-3 border-0 infocard" id="ic1">
                 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-truck"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
                     <div class="card-body">
                         <h5>Livraison rapide</h5>
                         <p>Nos livraisons sont parmis les plus sûres et les plus rapides du marché. En effet, près de 90% de nos clients en sont satifsait !</p>
                     </div>
                 </div>
-                <div class="card col-3 border-0 infocard" id="ic2">
+                <div class="card col-lg-3 border-0 infocard" id="ic2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                     <div class="card-body">
                         <h5>Produits de qualité</h5>
                         <p>Nos produits sont neufs et achettés dirrectement à l'usine. De plus, ils sont transportés par nos transporteurs certifiés, ce qui réduit le risque de produits défectueux.</p>
                     </div>
                 </div>
-                <div class="card col-3 border-0 infocard" id="ic3">
+                <div class="card col-lg-3 border-0 infocard" id="ic3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                     <div class="card-body">
                         <h5>Service après vente</h5>
@@ -86,7 +86,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row pb-5">
             <div class="text-center">
                 <h2 id="discoverh">Prêt à essayer ?</h2>
                 <br>

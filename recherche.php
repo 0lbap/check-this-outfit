@@ -9,7 +9,7 @@
     <title>Recherche • Projet Web</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <img src="https://via.placeholder.com/30x30.png?text=LOGO" alt="LOGO">
@@ -57,7 +57,7 @@
             </div>
         </div>
     </nav>
-    <main>
+    <main class="container">
         <div class="row">
             <div class="col-3 mg-3">
                 <h4>Rechercher</h4>
