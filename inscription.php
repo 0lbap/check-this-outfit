@@ -47,8 +47,8 @@
           <div class="col-12 mb-3">
             <label for="passconfirm" class="form-label">Confirmer le mot de passe</label>
             <input type="password" class="form-control" id="passconfirm" name="passconfirm" placeholder="••••••••">
-            <div class="col-12">
-            <div class="col-sm-8 mb-3">
+          </div>
+          <div class="col-sm-8 mb-3">
             <label for="adresse" class="form-label">Adresse</label>
             <input type="text" class="form-control" id="adresse" name="adresse" placeholder="6, rue de Furstenberg">
           </div>
@@ -56,6 +56,7 @@
             <label for="ville" class="form-label">Ville</label>
             <input type="text" class="form-control" id="ville" name="ville" placeholder="Paris">
           </div>
+          <div class="col-12">
             <button type="submit" class="btn btn-primary rounded-pill">Confirmer</button>
           </div>
   
@@ -63,7 +64,7 @@
         <br>
         <?php
           $bdd_user="root";
-          $bdd_password="";
+          $bdd_password="root";
           try 
           {
               $bdd = new PDO("mysql:host=localhost;dbname=projet_web;charset=utf8", "$bdd_user", "$bdd_password");
