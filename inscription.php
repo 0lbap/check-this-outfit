@@ -47,8 +47,8 @@
           <div class="col-12 mb-3">
             <label for="passconfirm" class="form-label">Confirmer le mot de passe</label>
             <input type="password" class="form-control" id="passconfirm" name="passconfirm" placeholder="••••••••">
-          </div>
-          <div class="col-sm-8 mb-3">
+            <div class="col-12">
+            <div class="col-sm-8 mb-3">
             <label for="adresse" class="form-label">Adresse</label>
             <input type="text" class="form-control" id="adresse" name="adresse" placeholder="6, rue de Furstenberg">
           </div>
@@ -56,33 +56,24 @@
             <label for="ville" class="form-label">Ville</label>
             <input type="text" class="form-control" id="ville" name="ville" placeholder="Paris">
           </div>
-          <div class="col-12">
             <button type="submit" class="btn btn-primary rounded-pill">Confirmer</button>
           </div>
-          <!--
-          <div><input class="input" type="email" name="email" id="email" placeholder="Votre email" required></div><br>
-          <div><input class="input" type="password" name="password" id="pass" placeholder="Votre mot de passe" minlength="8" required></div><br>
-          <div><input class="input" type="password" name="passconfirm" id="passconfirm" placeholder="Confirmer votre mot de passe" minlength="8" required></div><br>
-          <div><input class="input" type="text" name="nom" id="nom" placeholder="Votre nom" required></div><br>
-          <div><input class="input" type="text" name="prenom" id="prenom" placeholder="Votre prénom" required></div><br>
-          <div><input class="input" type="text" id="datenaiss" name="datenaiss"placeholder="Votre date de naissance" onfocus="(this.type='date')" min="1900-01-01" max="2021-12-31" required></div><br>
-          <div><input class="input" type="text" name="ville" id="ville" placeholder="Votre ville" required></div><br>
-          <div><input class="input" type="text" name="adresse" id="adresse" placeholder="Votre adresse" required></div><br>
-          <div><input class="input" type="tel" name="telephone" id="tel" placeholder="Votre n° de téléphone" minlength="10" maxlength="10" pattern="[0-9]{10}" required></div><br><br>
-          <div><input type="submit" name="creacompte" id="creacompte" value="Confirmer"></div><br>
-          -->
+  
         </form>
         <br>
         <?php
           $bdd_user="root";
-          $bdd_password="root";
-          try{
-            $bdd = new PDO('mysql:host=localhost;dbname=projet_web', $bdd_user, $bdd_password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-          } catch (Exception $e){
-            echo "Erreur: ".$e;
+          $bdd_password="";
+          try 
+          {
+              $bdd = new PDO("mysql:host=localhost;dbname=projet_web;charset=utf8", "$bdd_user", "$bdd_password");
+          }
+          catch(PDOException $e)
+          {
+              die('Erreur : '.$e->getMessage());
           }
           $erreur="";
-          if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['passconfirm']) && isset($_POST['ville']) && isset($_POST['adresse']) && isset($_POST['telephone'])){
+          if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['passconfirm'])&& isset($_POST['ville']) && isset($_POST['adresse']) && isset($_POST['telephone'])){
             $email=$_POST['email'];
             $password=$_POST['password'];
             $passconfirm=$_POST['passconfirm'];
@@ -92,22 +83,22 @@
             $adresse=$_POST['adresse'];
             $telephone=$_POST['telephone'];
 
-            if(!empty($email) AND !empty($password) AND !empty($passconfirm) AND !empty($nom) AND !empty($prenom) AND !empty($ville) AND !empty($adresse) AND !empty($telephone)){
+            if(!empty($email) AND !empty($password) AND !empty($passconfirm) AND !empty($nom) AND !empty($prenom)AND !empty($ville) AND !empty($adresse) AND !empty($telephone)){
               if(filter_var($email, FILTER_VALIDATE_EMAIL)){
                 if(strlen($password)>=8){
                   if($password==$passconfirm){
-                    $reqmail = $bdd->query('SELECT email FROM clients WHERE email="'.$email.'"');
+                    $reqmail = $bdd->prepare('SELECT email FROM clients WHERE email = ?');
+                    $reqmail-> execute(array($email));
                     if($reqmail->rowcount() == 0){
                       $password = password_hash($password,PASSWORD_DEFAULT);
-                      $insertmbr = $bdd->query("INSERT INTO clients (email,motDePasse,nom,prenom,ville,adresse,telephone) VALUES ('$email','$password','$nom','$prenom','$ville','$adresse','$telephone')");
+                      $insertmbr = $bdd->prepare('INSERT INTO clients (email,motDePasse,nom,prenom,ville,adresse,telephone) VALUES(?,?,?,?,?,?,?)');
+                      $insertmbr->execute(array($email,$password,$nom,$prenom,$ville,$adresse,$telephone));
                       echo '<div class="alert alert-success" role="alert">Compte créé ! Vous allez être redirigé...</div>';
-                      // ATTENTION : ERREUR LORS DE LA CRÉATION D'UN COMPTE AVEC UN CHAMP COMPORTANT UNE APOSTROPHE !
-                      header("refresh:3; url=connexion.php");
-                      // PROBLEME DE REDIRECTION AVEC LE HEADER !
+                      header('refresh:3; url=connexion.php');
                     }else $erreur="Adresse mail déjà utilisée";
                   }else $erreur="Vos mots de passe ne correspondent pas";
                 }else $erreur="Le mot de passe doit faire plus de 8 carractères";
-              }else $erreur="Veuillez saisir une adresse valide";
+              }else $erreur="Veuillez saisir une adresse mail valide";
             }else $erreur="Veuillez saisir tous les champs";
 
             if(!empty($erreur)){
