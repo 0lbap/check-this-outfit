@@ -9,7 +9,7 @@
     <title>Recherche • Projet Web</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <img src="https://via.placeholder.com/30x30.png?text=LOGO" alt="LOGO">
@@ -31,26 +31,28 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
-                    <!-- MENU DÉROULANT QUAND CONNECTÉ
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Bonjour, (Nom du client)
+                            <?php
+                                if(isset($_SESSION['email'])){
+                                    echo 'Bonjour, ' . $_SESSION['prenom'];
+                                } else {
+                                    echo 'Compte';
+                                }
+                            ?>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="panier.php">Mon panier</a></li>
-                            <li><a class="dropdown-item" href="commandes.php">Mes commandes</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="deconnexion.php">Déconnexion</a></li>
-                        </ul>
-                    </li>
-                    -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Compte
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="connexion.php">Se connecter</a></li>
-                            <li><a class="dropdown-item" href="inscription.php">S'inscrire</a></li>
+                            <?php
+                                if(isset($_SESSION['email'])){
+                                    echo '<li><a class="dropdown-item" href="panier.php">Mon panier</a></li>';
+                                    echo '<li><a class="dropdown-item" href="commandes.php">Mes commandes</a></li>';
+                                    echo '<li><hr class="dropdown-divider"></li>';
+                                    echo '<li><a class="dropdown-item" href="deconnexion.php">Déconnexion</a></li>';
+                                } else {
+                                    echo '<li><a class="dropdown-item" href="connexion.php">Se connecter</a></li>';
+                                    echo '<li><a class="dropdown-item" href="inscription.php">S\'inscrire</a></li>';
+                                }
+                            ?>
                         </ul>
                     </li>
                 </ul>
