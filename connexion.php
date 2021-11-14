@@ -9,57 +9,58 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="container">
-    <div class="row">
-      <div class="col-sm-2 col-md-3 col-lg-4"></div>
-      <div class="col-sm-8 col-md-6 col-lg-4 p-4">
-        <form action="connexion.php" method="POST">
-          <h2 class="mb-3">Connexion</h2>
-          <div class="mb-3">
-            <label for="email" class="form-label">Adresse email</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="nom@example.com">
-          </div>
-          <div class="mb-3">
-            <label for="password" class="form-label">Mot de passe</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="••••••••">
-          </div>
-          <button type="submit" class="btn btn-primary rounded-pill">Confirmer</button>
-        </form>
-        <br>
-        <?php
-          $bdd_user="root";
-          $bdd_password="root";
-          try{
-            $bdd = new PDO('mysql:host=localhost;dbname=projet_web', $bdd_user, $bdd_password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-          } catch (Exception $e){
-            echo "Erreur: ".$e;
+  <div class="row">
+    <div class="col-sm-2 col-md-3 col-lg-4"></div>
+    <div class="col-sm-8 col-md-6 col-lg-4 p-4">
+      <form action="connexion.php" method="POST">
+        <h2 class="mb-3">Connexion</h2>
+        <div class="mb-3">
+          <label for="email" class="form-label">Adresse email</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="nom@example.com">
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Mot de passe</label>
+          <input type="password" class="form-control" id="password" name="password" placeholder="••••••••">
+        </div>
+        <button type="submit" class="btn btn-primary">Confirmer</button>
+      </form>
+      <br>
+      <?php
+        $bdd_user="root";
+        $bdd_password="";
+        try 
+          {
+              $bdd = new PDO("mysql:host=localhost;dbname=projet_web;charset=utf8", "$bdd_user", "$bdd_password");
           }
-          $erreur="";
-          if (isset($_POST['email']) && isset($_POST['password'])){
-            $email=$_POST['email'];
-            $password=$_POST['password'];
-
-            if(!empty($email) AND !empty($password)){
-              $verifuser=$bdd->query("SELECT * FROM clients WHERE email='$email'");
-              $userdata=$verifuser->fetch();
-              if($verifuser->rowcount() == 1 && password_verify($password,$userdata['motDePasse'])){
-                $_SESSION['email']=$userdata['email'];
-                $_SESSION['prenom']=$userdata['prenom'];
-                $_SESSION['nom']=$userdata['nom'];
-                $_SESSION['adresse']=$userdata['adresse'];
-                header('location:index.php');
-              }else $erreur='<div class="alert alert-danger" role="alert">Identifiants incorrects</div>';
-            }else $erreur='<div class="alert alert-warning" role="alert">Veuillez saisir tous les champs</div>';
-
-            echo "$erreur";
+          catch(PDOException $e)
+          {
+              die('Erreur : '.$e->getMessage());
           }
-        ?>
-        <p>Pas de compte ? <a href="inscription.php">Inscrivez-vous !</a></p>
-        <a href="index.php">Retour à l'accueil</a>
-      </div>
+        $erreur="";
+        if (isset($_POST['email']) && isset($_POST['password'])){
+          $emailconnect=htmlspecialchars($_POST['email']);
+          $passwordconnect=$_POST['password'];
+
+          if(!empty($emailconnect) AND !empty($passwordconnect)){
+            $verifuser=$bdd->prepare("SELECT * FROM clients WHERE email= ?");
+            $verifuser->execute(array($emailconnect));
+            $userdata=$verifuser->fetch();
+            if($verifuser->rowcount() == 1 && password_verify($passwordconnect,$userdata['motDePasse'])){
+              $_SESSION['email']=$userdata['email'];
+              $_SESSION['prenom']=$userdata['prenom'];
+              $_SESSION['nom']=$userdata['nom'];
+              $_SESSION['adresse']=$userdata['adresse'];
+              header('location:index.php?email=".$_SESSION["email"]');
+            }else $erreur='<div class="alert alert-danger" role="alert">Identifiants incorrects</div>';
+          }else $erreur='<div class="alert alert-warning" role="alert">Veuillez saisir tous les champs</div>';
+
+          echo "$erreur";
+        }
+      ?>
+      <p>Pas de compte ? <a href="inscription.php">Inscrivez-vous !</a></p>
+      <a href="index.php">Retour à l'accueil</a>
     </div>
-  </main>
+  </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
-
