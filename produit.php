@@ -111,7 +111,7 @@
             <div class="col-md-6 mt-4">
                 <?php echo '<img src="' . $productdata['photo'] . '" class="img-fluid" alt="Image du produit indisponible">'; ?>
             </div>
-            <div class="col-md-6 mt-4">
+            <div class="col-md-5 mt-4">
                 <form action="produit.php" method="GET">
                     <?php
                         echo '<h4 class="fw-light">' . $productdata['marque'] . '</h4>';
