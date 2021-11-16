@@ -90,28 +90,26 @@
                 if(isset($_GET['addpanier'])){
                     if(isset($_SESSION['panier'])){
                         $panier = $_SESSION['panier'];
-                        if(isset($panier[$idProd])){
-                            $panier[$idProd]+=$_GET['addpanier'];
-                        } else {
-                            $panier[$idProd]=(int)$_GET['addpanier'];
-                        }
-                        $_SESSION['panier'] = $panier;
                     } else {
                         $panier = array();
+                    }
+                    if($_GET['addpanier']<=$productdata['stock'] && $_GET['addpanier']>0){
                         if(isset($panier[$idProd])){
                             $panier[$idProd]+=$_GET['addpanier'];
                         } else {
                             $panier[$idProd]=(int)$_GET['addpanier'];
                         }
                         $_SESSION['panier'] = $panier;
+                        echo '<div class="alert alert-success m-0">Vous avez ajouté ' . $_GET['addpanier'] . ' ' . $productdata['nom'] . ' dans votre panier. <a href="panier" class="alert-link">Voir mon panier</a></div>';
+                    } else {
+                        echo '<div class="alert alert-danger m-0">Impossible d\'ajouter ' . $_GET['addpanier'] . ' ' . $productdata['nom'] . ' dans votre panier (pas assez de stock ou quantité invalide).</div>';
                     }
-                    echo '<div class="alert alert-success m-0">Vous avez ajouté ' . $_GET['addpanier'] . ' ' . $productdata['nom'] . ' dans votre panier. <a href="panier" class="alert-link">Voir mon panier</a></div>';
                 }
             ?>
             <div class="col-md-6 mt-4">
                 <?php echo '<img src="' . $productdata['photo'] . '" class="img-fluid" alt="Image du produit indisponible">'; ?>
             </div>
-            <div class="col-md-5 mt-4">
+            <div class="col-md-4 mt-4">
                 <form action="produit.php" method="GET">
                     <?php
                         echo '<h4 class="fw-light">' . $productdata['marque'] . '</h4>';
@@ -121,8 +119,13 @@
                         echo '<h5>' . $productdata['prix'] . '€</h5>';
                         echo '<input type="hidden" name="id" value="' . $_GET['id'] . '">';
                         echo '<div class="row m-0 mt-3">';
-                        echo '<button type="submit" class="btn btn-dark col-8">Ajouter au panier</button>';
-                        echo '<div class="col-4"><input type="number" class="form-control" name="addpanier" value="1" min="1" max="10"></div>';
+                        if($productdata['stock']>0){
+                            echo '<button type="submit" class="btn btn-dark col-8">Ajouter au panier</button>';
+                            echo '<div class="col-4"><input type="number" class="form-control" name="addpanier" value="1" min="1" max="10"></div>';
+                        } else {
+                            echo '<button type="submit" class="btn btn-dark col-8" disabled>Rupture de stock</button>';
+                            echo '<div class="col-4"><input type="number" class="form-control" name="addpanier" value="1" min="1" max="10" disabled></div>';
+                        }
                         echo '</div>';
                         if($productdata['stock']<20){
                             echo '<p class="text-danger mt-2">Plus que ' . $productdata['stock'] . ' en stock !</p>';
