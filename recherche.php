@@ -1,4 +1,8 @@
-<?php session_start(); ?>
+<?php session_start(); 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -9,7 +13,7 @@
     <title>Recherche • Projet Web</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <img src="https://via.placeholder.com/30x30.png?text=LOGO" alt="LOGO">
@@ -60,9 +64,9 @@
         </div>
     </nav>
     <main class="container">
-        <div class="row">
-            <div class="col-3 mg-3">
-                <h4>Rechercher</h4>
+        <div class="row mt-4">
+            <div class="col-3 p-4 pt-0 border-end">
+                <h3>Rechercher</h3>
                 <form>
                     <div class="form-group">
                         <label for="motclef">Mot-clef</label>
@@ -86,67 +90,41 @@
                         <input type="checkbox" class="form-check-input" id="exampleCheck4">
                         <label class="form-check-label" for="exampleCheck4">Ordinateur</label>
                     </div>
-                    <button type="submit" class="btn btn-primary">Rechercher</button>
+                    <button type="submit" class="btn btn-dark">Rechercher</button>
                 </form>
             </div>
-            <div class="col-9">
-                <div class="row">
-                    <div class="card col-3 m-3">
-                        <img class="card-img-top" src="https://via.placeholder.com/300x180.png?text=Image+du+produit" alt="">
-                        <div class="card-body">
-                            <h5>Article</h5>
-                            <p>Prix</p>
-                            <a href="#" class="btn btn-primary disabled">Détails</a><span class="text-danger"> Indisponible</span>
-                        </div>
-                    </div>
-                    <div class="card col-3 m-3">
-                        <img class="card-img-top" src="https://via.placeholder.com/300x180.png?text=Image+du+produit" alt="">
-                        <div class="card-body">
-                            <h5>Article</h5>
-                            <p>Prix</p>
-                            <a href="#" class="btn btn-primary">Détails</a>
-                        </div>
-                    </div>
-                    <div class="card col-3 m-3">
-                        <img class="card-img-top" src="https://via.placeholder.com/300x180.png?text=Image+du+produit" alt="">
-                        <div class="card-body">
-                            <h5>Article</h5>
-                            <p>Prix</p>
-                            <a href="#" class="btn btn-primary">Détails</a><span class="text-success"> Offre spéciale</span>
-                        </div>
-                    </div>
-                    <div class="card col-3 m-3">
-                        <img class="card-img-top" src="https://via.placeholder.com/300x180.png?text=Image+du+produit" alt="">
-                        <div class="card-body">
-                            <h5>Article</h5>
-                            <p>Prix</p>
-                            <a href="#" class="btn btn-primary">Détails</a>
-                        </div>
-                    </div>
-                    <div class="card col-3 m-3">
-                        <img class="card-img-top" src="https://via.placeholder.com/300x180.png?text=Image+du+produit" alt="">
-                        <div class="card-body">
-                            <h5>Article</h5>
-                            <p>Prix</p>
-                            <a href="#" class="btn btn-primary">Détails</a>
-                        </div>
-                    </div>
-                    <div class="card col-3 m-3">
-                        <img class="card-img-top" src="https://via.placeholder.com/300x180.png?text=Image+du+produit" alt="">
-                        <div class="card-body">
-                            <h5>Article</h5>
-                            <p>Prix</p>
-                            <a href="#" class="btn btn-primary">Détails</a>
-                        </div>
-                    </div>
-                    <div class="card col-3 m-3">
-                        <img class="card-img-top" src="https://via.placeholder.com/300x180.png?text=Image+du+produit" alt="">
-                        <div class="card-body">
-                            <h5>Article</h5>
-                            <p>Prix</p>
-                            <a href="#" class="btn btn-primary">Détails</a>
-                        </div>
-                    </div>
+            <div class="col-9 p-4 pt-0">
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <?php
+                        $bdd_user="root";
+                        $bdd_password="root";
+                        try 
+                            {
+                                $bdd = new PDO("mysql:host=localhost;dbname=projet_web;charset=utf8", "$bdd_user", "$bdd_password");
+                            }
+                        catch(PDOException $e)
+                            {
+                                die('Erreur : '.$e->getMessage());
+                            }
+                        
+                        $getproducts=$bdd->prepare("SELECT * FROM Produits/* WHERE idProduit= ?*/");
+                        $getproducts->execute(/*array($idProd)*/);
+                        
+                        while($product = $getproducts->fetch()){
+                            echo '<div class="col">';
+                            echo '<a href="produit.php?id=' . $product['idProduit'] . '" class="text-decoration-none text-reset">';
+                            echo '<div class="card">';
+                            echo '<img src="' . $product['photo'] . '" class="card-img-top" alt="Image du produit indisponible">';
+                            echo '<div class="card-body">';
+                            echo '<h5 class="card-title">' . $product['nom'] . '</h5>';
+                            echo '<p class="card-text">' . $product['prix'] . '€</p>';
+                            echo '</div>';
+                            echo '</div>';
+                            echo '</a>';
+                            echo '</div>';
+                        }
+                        
+                    ?>
                 </div>
             </div>
         </div>
