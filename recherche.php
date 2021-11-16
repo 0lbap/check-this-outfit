@@ -65,36 +65,40 @@ error_reporting(E_ALL);
     </nav>
     <main class="container">
         <div class="row mt-4">
-            <div class="col-3 p-4 pt-0 border-end">
-                <h3>Rechercher</h3>
-                <form>
-                    <div class="form-group">
-                        <label for="motclef">Mot-clef</label>
-                        <input type="text" class="form-control" id="motclef" aria-describedby="motclef" placeholder="Entrez un mot-clef">
+            <div class="col-3 p-4 pb-0 pt-0 border-end">
+                <form action="recherche.php" method="GET">
+                    <h3>Rechercher</h3>
+                    <div class="pb-3">
+                        <label for="motclef"><h6>Mot-clé :</h6></label>
+                        <input type="text" class="form-control" name="motcle" id="motcle" placeholder="ex : Sweat...">
                     </div>
-                    <p>Marques :</p>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Apple</label>
+                    <div class="pb-3">
+                        <h6>Marques :</h6>
+                        <div class="form-check">
+                            <label class="form-check-label" for="check-m-apple">Apple</label>
+                            <input type="checkbox" class="form-check-input" name="marque[]" value="apple" id="check-apple">
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label" for="check-m-samsung">Samsung</label>
+                            <input type="checkbox" class="form-check-input" name="marque[]" value="samsung" id="check-samsung">
+                        </div>
                     </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck2">
-                        <label class="form-check-label" for="exampleCheck2">Samsung</label>
-                    </div>
-                    <p>Catégories :</p>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck3">
-                        <label class="form-check-label" for="exampleCheck3">Téléphone</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck4">
-                        <label class="form-check-label" for="exampleCheck4">Ordinateur</label>
+                    <div class="pb-3">
+                        <h6>Catégories :</h6>
+                        <div class="form-check">
+                            <label class="form-check-label" for="check-c-telephone">Téléphone</label>
+                            <input type="checkbox" class="form-check-input" name="categorie[]" value="telephone" id="check-c-telephone">
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label" for="check-c-ordinateur">Ordinateur</label>
+                            <input type="checkbox" class="form-check-input" name="categorie[]" value="ordinateur" id="check-c-ordinateur">
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-dark">Rechercher</button>
                 </form>
             </div>
-            <div class="col-9 p-4 pt-0">
-                <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col-9 p-4 pb-0 pt-0">
+                <div class="row">
                     <?php
                         $bdd_user="root";
                         $bdd_password="root";
@@ -107,11 +111,52 @@ error_reporting(E_ALL);
                                 die('Erreur : '.$e->getMessage());
                             }
                         
-                        $getproducts=$bdd->prepare("SELECT * FROM Produits/* WHERE idProduit= ?*/");
-                        $getproducts->execute(/*array($idProd)*/);
+                        // Création de la requête :
+                        $sql="SELECT * FROM Produits";
+                        if(!empty($_GET['marque']) || !empty($_GET['categorie'])){
+                            $sql.=" WHERE";
+                            if(!empty($_GET['marque'])){
+                                $i=0;
+                                $sql.=" (";
+                                foreach($_GET['marque'] as $marque){
+                                    if($i>0){
+                                        $sql.=" OR";
+                                    }
+                                    $sql.=" marque='$marque'";
+                                    $i++;
+                                }
+                                $sql.=")";
+                            }
+                            if(!empty($_GET['categorie'])){
+                                if(isset($i)){
+                                    $sql.=" AND";
+                                }
+                                $i=0;
+                                $sql.=" (";
+                                foreach($_GET['categorie'] as $categorie){
+                                    if($i>0){
+                                        $sql.=" OR";
+                                    }
+                                    $sql.=" categorie='$categorie'";
+                                    $i++;
+                                }
+                                $sql.=")";
+                            }
+                        }
+
+                        // Binding des paramètres et exécution:
+                        $getproducts=$bdd->prepare($sql);
+                        $getproducts->execute();
+                        $productsdata=$getproducts->fetchAll();
                         
-                        while($product = $getproducts->fetch()){
-                            echo '<div class="col">';
+                        // Affichage :
+                        if(empty($productsdata)){
+                            echo '<h5>Aucun article ne correspond à votre recherche.</h5>';
+                        } else {
+                            echo '<h5>' . count($productsdata) . ' article(s) trouvé(s).</h5>';
+                        }
+                        foreach($productsdata as $product){
+                            echo '<div class="col-md-4 mt-2">';
                             echo '<a href="produit.php?id=' . $product['idProduit'] . '" class="text-decoration-none text-reset">';
                             echo '<div class="card">';
                             echo '<img src="' . $product['photo'] . '" class="card-img-top" alt="Image du produit indisponible">';
@@ -123,7 +168,6 @@ error_reporting(E_ALL);
                             echo '</a>';
                             echo '</div>';
                         }
-                        
                     ?>
                 </div>
             </div>
