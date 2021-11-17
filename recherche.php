@@ -65,12 +65,16 @@ error_reporting(E_ALL);
     </nav>
     <main class="container">
         <div class="row mt-4">
-            <div class="col-3 p-4 pb-0 pt-0 border-end">
+            <div class="col-md-3 p-4 pb-3 pt-0 border-end">
                 <form action="recherche.php" method="GET">
-                    <h3>Rechercher</h3>
+                    <h2>Rechercher</h2>
                     <div class="pb-3">
-                        <label for="motclef"><h6>Mot-clé :</h6></label>
-                        <input type="text" class="form-control" name="motcle" id="motcle" placeholder="ex : Sweat...">
+                        <label for="nom"><h6>Nom :</h6></label>
+                        <input type="text" class="form-control" name="nom" id="nom" placeholder="ex : Sweat...">
+                    </div>
+                    <div class="pb-3">
+                        <label for="motscles"><h6>Mots-clés :</h6></label>
+                        <input type="text" class="form-control" name="motscles" id="motscles" placeholder="ex : Coton...">
                     </div>
                     <div class="pb-3">
                         <h6>Marques :</h6>
@@ -97,7 +101,7 @@ error_reporting(E_ALL);
                     <button type="submit" class="btn btn-dark">Rechercher</button>
                 </form>
             </div>
-            <div class="col-9 p-4 pb-0 pt-0">
+            <div class="col-md-9 p-4 pb-0 pt-0">
                 <div class="row">
                     <?php
                         $bdd_user="root";
@@ -143,6 +147,30 @@ error_reporting(E_ALL);
                                 $sql.=")";
                             }
                         }
+                        if(!empty($_GET['nom']) || !empty($_GET['motscles'])){
+                            $sql.=" GROUP BY idProduit HAVING";
+                            if(!empty($_GET['nom'])){
+                                $j=0;
+                                $nom=$_GET['nom'];
+                                $sql.=" nom LIKE '%$nom%'";
+                            }
+                            if(!empty($_GET['motscles'])){
+                                if(isset($j)){
+                                    $sql.=" AND";
+                                }
+                                $j=0;
+                                $sql.=" (";
+                                $motscles=explode(' ', $_GET['motscles']);
+                                foreach($motscles as $motcle){
+                                    if($j>0){
+                                        $sql.=" AND";
+                                    }
+                                    $sql.=" descriptif LIKE '%$motcle%'";
+                                    $j++;
+                                }
+                                $sql.=")";
+                            }
+                        }
 
                         // Binding des paramètres et exécution:
                         $getproducts=$bdd->prepare($sql);
@@ -156,7 +184,7 @@ error_reporting(E_ALL);
                             echo '<h5>' . count($productsdata) . ' article(s) trouvé(s).</h5>';
                         }
                         foreach($productsdata as $product){
-                            echo '<div class="col-md-4 mt-2">';
+                            echo '<div class="col-md-4 p-2">';
                             echo '<a href="produit.php?id=' . $product['idProduit'] . '" class="text-decoration-none text-reset">';
                             echo '<div class="card">';
                             echo '<img src="' . $product['photo'] . '" class="card-img-top" alt="Image du produit indisponible">';
