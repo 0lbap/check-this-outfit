@@ -117,6 +117,7 @@ error_reporting(E_ALL);
                         
                         // Création de la requête :
                         $sql="SELECT * FROM Produits";
+                        $params=array();
                         if(!empty($_GET['marque']) || !empty($_GET['categorie'])){
                             $sql.=" WHERE";
                             if(!empty($_GET['marque'])){
@@ -126,7 +127,8 @@ error_reporting(E_ALL);
                                     if($i>0){
                                         $sql.=" OR";
                                     }
-                                    $sql.=" marque='$marque'";
+                                    $sql.=" marque=?";
+                                    array_push($params,$marque);
                                     $i++;
                                 }
                                 $sql.=")";
@@ -141,7 +143,8 @@ error_reporting(E_ALL);
                                     if($i>0){
                                         $sql.=" OR";
                                     }
-                                    $sql.=" categorie='$categorie'";
+                                    $sql.=" categorie=?";
+                                    array_push($params,$categorie);
                                     $i++;
                                 }
                                 $sql.=")";
@@ -152,7 +155,8 @@ error_reporting(E_ALL);
                             if(!empty($_GET['nom'])){
                                 $j=0;
                                 $nom=$_GET['nom'];
-                                $sql.=" nom LIKE '%$nom%'";
+                                $sql.=" nom LIKE ?";
+                                array_push($params,"%".$nom."%");
                             }
                             if(!empty($_GET['motscles'])){
                                 if(isset($j)){
@@ -165,7 +169,8 @@ error_reporting(E_ALL);
                                     if($j>0){
                                         $sql.=" AND";
                                     }
-                                    $sql.=" descriptif LIKE '%$motcle%'";
+                                    $sql.=" descriptif LIKE ?";
+                                    array_push($params,"%".$motcle."%");
                                     $j++;
                                 }
                                 $sql.=")";
@@ -174,7 +179,7 @@ error_reporting(E_ALL);
 
                         // Binding des paramètres et exécution:
                         $getproducts=$bdd->prepare($sql);
-                        $getproducts->execute();
+                        $getproducts->execute($params);
                         $productsdata=$getproducts->fetchAll();
                         
                         // Affichage :
