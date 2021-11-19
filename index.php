@@ -9,7 +9,7 @@
     <title>Projet Web</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-sm navbar-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <img src="https://via.placeholder.com/30x30.png?text=LOGO" alt="LOGO">
@@ -60,7 +60,7 @@
         </div>
     </nav>
     <main class="container">
-        <h2 class="text-center title">Bienvenue sur Projet Web.</h2>
+        <h2 class="text-left fw-bold display-1 title">Exprimez<br>votre style.</h2>
         <div class="row p-5">
             <div class="cardcontainer">
                 <div class="card col-lg-3 border-0 infocard" id="ic1">
@@ -90,7 +90,7 @@
             <div class="text-center">
                 <h2 id="discoverh">Prêt à essayer ?</h2>
                 <br>
-                <a href="recherche.php" class="btn btn-primary rounded-pill" id="discoverbtn">Découvrez nos produits !</a>
+                <a href="recherche.php" class="btn btn-dark rounded-pill" id="discoverbtn">Découvrez nos produits !</a>
             </div>
         </div>
     </main>

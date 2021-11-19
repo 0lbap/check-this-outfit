@@ -9,7 +9,7 @@
     <title>Produit • Projet Web</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <img src="https://via.placeholder.com/30x30.png?text=LOGO" alt="LOGO">
@@ -59,7 +59,7 @@
             </div>
         </div>
     </nav>
-    <main class="container">
+    <main class="container pt-5">
         <div class="row p-4">
             <?php
                 $idProd = $_GET['id'];

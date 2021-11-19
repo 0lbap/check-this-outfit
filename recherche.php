@@ -13,7 +13,7 @@ error_reporting(E_ALL);
     <title>Recherche • Projet Web</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <img src="https://via.placeholder.com/30x30.png?text=LOGO" alt="LOGO">
@@ -63,7 +63,7 @@ error_reporting(E_ALL);
             </div>
         </div>
     </nav>
-    <main class="container">
+    <main class="container pt-5">
         <div class="row mt-4">
             <div class="col-md-3 p-4 pb-3 pt-0 border-end">
                 <form action="recherche.php" method="GET">
