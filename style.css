@@ -17,16 +17,25 @@ body{
 }
 
 #ic1{
+    background-color: #59CAD1;
+    width: 100vw;
+    height: 33vh;
     animation: cardfade 0.5s ease 0s 1;
     animation-fill-mode: forwards;
 }
 
 #ic2{
+    background-color: #C682AC;
+    width: 100vw;
+    height: 33vh;
     animation: cardfade 0.5s ease 0.1s 1;
     animation-fill-mode: forwards;
 }
 
 #ic3{
+    background-color: #96BD57;
+    width: 100vw;
+    height: 33vh;
     animation: cardfade 0.5s ease 0.2s 1;
     animation-fill-mode: forwards;
 }
@@ -43,20 +52,14 @@ body{
 }
 
 .title{
-    margin-top: 1rem;
+    font-size: calc(5vw + 30px);
+    color: white;
+    text-shadow: 0px 0px 10px gray;
 }
 
 #discoverh{
     color: rgba(0, 0, 0, 0);
     animation: discoverhfade 0.5s ease 1s;
-    animation-fill-mode: forwards;
-}
-
-#discoverbtn{
-    background-color: rgba(0, 0, 0, 0);
-    border-color: rgba(0, 0, 0, 0);
-    color: rgba(0, 0, 0, 0);
-    animation: discoverbtnfade 0.5s ease 1s;
     animation-fill-mode: forwards;
 }
 
@@ -74,15 +77,29 @@ body{
     }
 }
 
-@keyframes discoverbtnfade {
-    0%{
-        color: rgba(0, 0, 0, 0);
-        background-color: rgba(0, 0, 0, 0);
-        border-color: rgba(0, 0, 0, 0);
-    }
-    100%{
-        color: white;
-        background-color: var(--bs-dark);
-        border-color: rgba(0, 0, 0, 0);
-    }
+.first-screen{
+    background-image: url("images/urban.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.second-screen{
+    background-color: #96BD57;
+    width: 100vw;
+    height: 100vh;
+}
+
+.nav-gradient{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5),transparent);
+    height: 10rem;
+}
+
+.chevron-down{
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    transform: translateX(-50%);
 }
