@@ -82,7 +82,7 @@
         } else {
             $panier = array();
             echo '<div class="col-12 text-center mt-5">';
-            echo '<img class="w-25 pt-5 pb-3" src="sadcart.png" alt="">';
+            echo '<img class="w-25 pt-5 pb-3" src="images/sadcart.png" alt="">';
             echo '<h5>Malheureusement ton panier est vide...</h5>';
             echo '<div>';
             echo '<a href="recherche.php"><button type=button class="btn btn-primary mt-4">Continuer mes achats</button></a>';
