@@ -91,39 +91,87 @@ error_reporting(E_ALL);
             </div>
         </div>
     </nav>
+    <?php
+        $bdd_user="root";
+        $bdd_password="root";
+        try 
+            {
+                $bdd = new PDO("mysql:host=localhost;dbname=projet_web;charset=utf8", "$bdd_user", "$bdd_password");
+            }
+        catch(PDOException $e)
+            {
+                die('Erreur : '.$e->getMessage());
+            }
+    ?>
     <main class="container pt-5">
         <div class="row mt-4">
             <div class="col-md-3 p-4 pb-3 pt-0 border-end">
                 <form action="recherche.php" method="GET">
-                    <h2>Rechercher</h2>
-                    <div class="pb-3">
+                    <h3>Rechercher</h3>
+                    <div class="mb-3">
                         <label for="nom"><h6>Nom :</h6></label>
                         <input type="text" class="form-control" name="nom" id="nom" placeholder="ex : Sweat...">
                     </div>
-                    <div class="pb-3">
+                    <div class="mb-3">
                         <label for="motscles"><h6>Mots-clés :</h6></label>
                         <input type="text" class="form-control" name="motscles" id="motscles" placeholder="ex : Coton...">
                     </div>
-                    <div class="pb-3">
+                    <div class="mb-3">
                         <h6>Marques :</h6>
-                        <div class="form-check">
-                            <label class="form-check-label" for="check-m-apple">Apple</label>
-                            <input type="checkbox" class="form-check-input" name="marque[]" value="apple" id="check-apple">
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label" for="check-m-samsung">Samsung</label>
-                            <input type="checkbox" class="form-check-input" name="marque[]" value="samsung" id="check-samsung">
-                        </div>
+                        <?php
+                            $sql="SELECT DISTINCT marque FROM Produits";
+                            $getmarques=$bdd->prepare($sql);
+                            $getmarques->execute();
+                            $marquesdata=$getmarques->fetchAll();
+                            foreach($marquesdata as $marque){
+                                echo '<div class="form-check">';
+                                echo '<label class="form-check-label" for="check-marq-' . strtolower($marque['marque']) . '">' . $marque['marque'] . '</label>';
+                                echo '<input type="checkbox" class="form-check-input" name="marque[]" value="' . strtolower($marque['marque']) . '" id="check-marq-' . strtolower($marque['marque']) . '">';
+                                echo '</div>';
+                            }
+                        ?>
                     </div>
-                    <div class="pb-3">
+                    <div class="mb-3">
                         <h6>Catégories :</h6>
-                        <div class="form-check">
-                            <label class="form-check-label" for="check-c-telephone">Téléphone</label>
-                            <input type="checkbox" class="form-check-input" name="categorie[]" value="telephone" id="check-c-telephone">
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label" for="check-c-ordinateur">Ordinateur</label>
-                            <input type="checkbox" class="form-check-input" name="categorie[]" value="ordinateur" id="check-c-ordinateur">
+                        <?php
+                            $sql="SELECT DISTINCT categorie FROM Produits";
+                            $getcategories=$bdd->prepare($sql);
+                            $getcategories->execute();
+                            $categoriesdata=$getcategories->fetchAll();
+                            foreach($categoriesdata as $categorie){
+                                echo '<div class="form-check">';
+                                echo '<label class="form-check-label" for="check-cat-' . strtolower($categorie['categorie']) . '">' . $categorie['categorie'] . '</label>';
+                                echo '<input type="checkbox" class="form-check-input" name="categorie[]" value="' . strtolower($categorie['categorie']) . '" id="check-cat-' . strtolower($categorie['categorie']) . '">';
+                                echo '</div>';
+                            }
+                        ?>
+                    </div>
+                    <div class="mb-3">
+                        <h6>Couleurs :</h6>
+                        <?php
+                            $sql="SELECT DISTINCT couleur FROM Produits";
+                            $getcouleurs=$bdd->prepare($sql);
+                            $getcouleurs->execute();
+                            $couleursdata=$getcouleurs->fetchAll();
+                            foreach($couleursdata as $couleur){
+                                echo '<div class="form-check">';
+                                echo '<label class="form-check-label" for="check-coul-' . strtolower($couleur['couleur']) . '">' . $couleur['couleur'] . '</label>';
+                                echo '<input type="checkbox" class="form-check-input" name="couleur[]" value="' . strtolower($couleur['couleur']) . '" id="check-coul-' . strtolower($couleur['couleur']) . '">';
+                                echo '</div>';
+                            }
+                        ?>
+                    </div>
+                    <div class="mb-3">
+                        <h6>Prix :</h6>
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="pmin">Min</label>
+                                <input type="number" class="form-control" name="pmin" id="pmin" placeholder="0">
+                            </div>
+                            <div class="col-6">
+                                <label for="pmax">Max</label>
+                                <input type="number" class="form-control" name="pmax" id="pmax" placeholder="1000">
+                            </div>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-dark">Rechercher</button>
@@ -132,52 +180,74 @@ error_reporting(E_ALL);
             <div class="col-md-9 p-4 pb-0 pt-0">
                 <div class="row">
                     <?php
-                        $bdd_user="root";
-                        $bdd_password="root";
-                        try 
-                            {
-                                $bdd = new PDO("mysql:host=localhost;dbname=projet_web;charset=utf8", "$bdd_user", "$bdd_password");
-                            }
-                        catch(PDOException $e)
-                            {
-                                die('Erreur : '.$e->getMessage());
-                            }
-                        
                         // Création de la requête :
                         $sql="SELECT * FROM Produits";
                         $params=array();
-                        if(!empty($_GET['marque']) || !empty($_GET['categorie'])){
-                            $sql.=" WHERE";
-                            if(!empty($_GET['marque'])){
-                                $i=0;
-                                $sql.=" (";
-                                foreach($_GET['marque'] as $marque){
-                                    if($i>0){
-                                        $sql.=" OR";
-                                    }
-                                    $sql.=" marque=?";
-                                    array_push($params,$marque);
-                                    $i++;
+                        $sql.=" WHERE";
+
+                        // MARQUE, CATEGORIE ET COULEUR
+                        if(!empty($_GET['marque'])){
+                            $i=0;
+                            $sql.=" (";
+                            foreach($_GET['marque'] as $marque){
+                                if($i>0){
+                                    $sql.=" OR";
                                 }
-                                $sql.=")";
+                                $sql.=" marque=?";
+                                array_push($params,$marque);
+                                $i++;
                             }
-                            if(!empty($_GET['categorie'])){
-                                if(isset($i)){
-                                    $sql.=" AND";
-                                }
-                                $i=0;
-                                $sql.=" (";
-                                foreach($_GET['categorie'] as $categorie){
-                                    if($i>0){
-                                        $sql.=" OR";
-                                    }
-                                    $sql.=" categorie=?";
-                                    array_push($params,$categorie);
-                                    $i++;
-                                }
-                                $sql.=")";
-                            }
+                            $sql.=")";
                         }
+                        if(!empty($_GET['categorie'])){
+                            if(isset($i)){
+                                $sql.=" AND";
+                            }
+                            $i=0;
+                            $sql.=" (";
+                            foreach($_GET['categorie'] as $categorie){
+                                if($i>0){
+                                    $sql.=" OR";
+                                }
+                                $sql.=" categorie=?";
+                                array_push($params,$categorie);
+                                $i++;
+                            }
+                            $sql.=")";
+                        }
+                        if(!empty($_GET['couleur'])){
+                            if(isset($i)){
+                                $sql.=" AND";
+                            }
+                            $i=0;
+                            $sql.=" (";
+                            foreach($_GET['couleur'] as $couleur){
+                                if($i>0){
+                                    $sql.=" OR";
+                                }
+                                $sql.=" couleur=?";
+                                array_push($params,$couleur);
+                                $i++;
+                            }
+                            $sql.=")";
+                        }
+
+                        // PRIX
+                        $pmin=0;
+                        $pmax=1000;
+                        if(isset($_GET['pmin']) && is_numeric($_GET['pmin'])){
+                            $pmin=$_GET['pmin'];
+                        }
+                        if(isset($_GET['pmax']) && is_numeric($_GET['pmax'])){
+                            $pmax=$_GET['pmax'];
+                        }
+                        if(isset($i)){
+                            $sql.=" AND";
+                        }
+                        $sql.=" (prix BETWEEN ? AND ?)";
+                        array_push($params,$pmin,$pmax);
+
+                        // NOM ET MOTS CLES
                         if(!empty($_GET['nom']) || !empty($_GET['motscles'])){
                             $sql.=" GROUP BY idProduit HAVING";
                             if(!empty($_GET['nom'])){
