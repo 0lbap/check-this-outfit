@@ -24,7 +24,7 @@
                         <a class="nav-link" href="index.php">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Produits</a>
+                        <a class="nav-link active" href="recherche.php">Produits</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">À propos</a>
