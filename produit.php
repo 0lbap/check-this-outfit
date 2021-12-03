@@ -128,7 +128,7 @@
                             $panier[$idProd]=(int)$_GET['addpanier'];
                         }
                         $_SESSION['panier'] = $panier;
-                        echo '<div class="alert alert-success m-0">Vous avez ajouté ' . $_GET['addpanier'] . ' ' . $productdata['nom'] . ' dans votre panier. <a href="panier" class="alert-link">Voir mon panier</a></div>';
+                        echo '<div class="alert alert-success m-0">Vous avez ajouté ' . $_GET['addpanier'] . ' ' . $productdata['nom'] . ' dans votre panier. <a href="panier.php" class="alert-link">Voir mon panier</a></div>';
                     } else {
                         echo '<div class="alert alert-danger m-0">Impossible d\'ajouter ' . $_GET['addpanier'] . ' ' . $productdata['nom'] . ' dans votre panier (pas assez de stock ou quantité invalide).</div>';
                     }
