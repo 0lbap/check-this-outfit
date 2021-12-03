@@ -51,6 +51,7 @@
                 $_SESSION['prenom']=$userdata['prenom'];
                 $_SESSION['nom']=$userdata['nom'];
                 $_SESSION['adresse']=$userdata['adresse'];
+                $_SESSION['telephone']=$userdata['telephone'];
                 header('location:index.php?email=".$_SESSION["email"]');
               }else $erreur='<div class="alert alert-danger" role="alert">Identifiants incorrects</div>';
             }else $erreur='<div class="alert alert-warning" role="alert">Veuillez saisir tous les champs</div>';
