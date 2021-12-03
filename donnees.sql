@@ -4,7 +4,7 @@ INSERT INTO Commandes (dateCommande, email, etat) VALUES ("2020-10-12", "pablo.l
 INSERT INTO Commandes (dateCommande, email, etat) VALUES ("2020-06-24", "axel.cazorla@etu.umontpellier.fr", "Livré");
 INSERT INTO Lignescommandes (idCommande, idProduit, quantite, montant) VALUES (1, 2, 1, 890.99);
 INSERT INTO Lignescommandes (idCommande, idProduit, quantite, montant) VALUES (2, 1, 3, 2489.97);
-INSERT INTO produits VALUES
+INSERT INTO Produits VALUES
 (1, 'BOUQUET', 'Carhartt WIP', 'T-shirt', 'blablabla', 'imgproduits/1.jpg', 48.95, 49, 'Blanc'),
 (2, 'HARP', 'Carhartt WIP', 'T-shirt', 'blablabla', 'imgproduits/2.jpg', 38.95, 40, 'Noir'),
 (3, 'MINERAL WASH PO', 'Vans', 'Sweatshirt', 'blablabla', 'imgproduits/3.jpg', 75, 11, 'Marron'),
