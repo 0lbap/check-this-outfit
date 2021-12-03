@@ -23,6 +23,7 @@ CREATE TABLE Produits (
     photo VARCHAR(255),
     prix FLOAT,
     stock INT,
+    couleur VARCHAR(255),
     PRIMARY KEY (idProduit)
 );
 
