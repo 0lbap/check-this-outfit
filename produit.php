@@ -9,8 +9,8 @@
     <title>Produit • Projet Web</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
-    <div class="container-fluid">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <img src="https://via.placeholder.com/30x30.png?text=LOGO" alt="LOGO">
                 Projet Web

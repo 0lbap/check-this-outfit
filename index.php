@@ -11,7 +11,7 @@
 <body>
     <div class="first-screen">
         <div class="nav-gradient">
-            <nav class="navbar navbar-expand-sm navbar-dark">
+            <nav class="navbar navbar-expand-md navbar-dark">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">
                         <img src="https://via.placeholder.com/30x30.png?text=LOGO" alt="LOGO">
