@@ -4,7 +4,7 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
-    if(isset($_SESSION['email'])){
+    if(isset($_SESSION['user'])){
         header('location:index.php');
     }
 ?>

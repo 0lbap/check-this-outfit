@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
-    <title>Connexion • Projet Web</title>
+    <title>Connexion nnnn • Projet Web</title>
 </head>
 <body>
     <main class="container">
@@ -41,18 +41,13 @@
                     if(isset($_POST['email']) && isset($_POST['password'])){
                         $emailconnect=htmlspecialchars($_POST['email']);
                         $passwordconnect=$_POST['password'];
-
-                        if(!empty($emailconnect) AND !empty($passwordconnect)){
+                        if(!empty($emailconnect) && !empty($passwordconnect)){
                             $verifuser=$bdd->prepare("SELECT * FROM clients WHERE email= ?");
                             $verifuser->execute(array($emailconnect));
                             $userdata=$verifuser->fetch();
                             if($verifuser->rowcount() == 1 && password_verify($passwordconnect,$userdata['motDePasse'])){
-                                $_SESSION['email']=$userdata['email'];
-                                $_SESSION['prenom']=$userdata['prenom'];
-                                $_SESSION['nom']=$userdata['nom'];
-                                $_SESSION['adresse']=$userdata['adresse'];
-                                $_SESSION['telephone']=$userdata['telephone'];
-                                header('location:index.php?email=".$_SESSION["email"]');
+                                $_SESSION['user']=$userdata;
+                                header('location:index.php');
                             } else $erreur='<div class="alert alert-danger" role="alert">Identifiants incorrects</div>';
                         } else $erreur='<div class="alert alert-warning" role="alert">Veuillez saisir tous les champs</div>';
 

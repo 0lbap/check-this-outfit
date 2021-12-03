@@ -53,8 +53,8 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user m-1 mt-0 mb-0"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                             <?php
-                                if(isset($_SESSION['email'])){
-                                    echo 'Bonjour, ' . $_SESSION['prenom'];
+                                if(isset($_SESSION['user'])){
+                                    echo 'Bonjour, ' . $_SESSION['user']['prenom'];
                                 } else {
                                     echo 'Compte';
                                 }
@@ -62,7 +62,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <?php
-                                if(isset($_SESSION['email'])){
+                                if(isset($_SESSION['user'])){
                                     echo '<li><a class="dropdown-item" href="commandes.php">';
                                     echo '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-bag"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>';
                                     echo '<span class="m-1 mt-0 mb-0"></span>';
@@ -89,9 +89,6 @@
             </div>
         </div>
     </nav>
-    
-    
-
     <main class="container pt-5">
         <div class="row mt-5">
             <?php                          
@@ -141,7 +138,7 @@
                 }
                 
                 if(isset($_POST['commander'])){
-                    if(!isset($_SESSION['email'])){
+                    if(!isset($_SESSION['user'])){
                         echo '<div class="alert alert-info mb-4">Connectez-vous pour passer la commande. <a href="connexion.php" class="alert-link">Connexion</a></div>';
                     } else {
                         $stocksOK=true;
@@ -157,7 +154,7 @@
                             echo '<div class="alert alert-warning mb-4">Il n\'y a pas assez de stock disponible, veuillez modifier votre commande.</div>';
                         } else {
                             $ajoutCommande= $bdd -> prepare("INSERT INTO commandes VALUES(?,?,?,?)");
-                            $ajoutCommande->execute(array(NULL,date('Y-m-d H:i:s'),$_SESSION['email'],'En cours'));
+                            $ajoutCommande->execute(array(NULL,date('Y-m-d H:i:s'),$_SESSION['user']['email'],'En cours'));
                             $last_id=$bdd->lastInsertId();
 
                             foreach($panier as $idProd => $quantite){
@@ -181,7 +178,7 @@
             <div class="card col-lg-8 shadow mb-5 mb-lg-0 h-100">
                 <div class="card-body">
                     <?php
-                        if(isset($_SESSION['email'])) {
+                        if(isset($_SESSION['user'])) {
                             echo '<h3 class="display-6">Votre panier</h3>';
                         } else {
                             echo '<h3 class="display-6">Votre panier (non connecté)</h3>';
@@ -259,13 +256,14 @@
                         <p class="col-6 card-text fw-bold text-end"><?php echo $total*1.2+4.5 ?>€</p>
                     </div>
                     <?php
-                        if(isset($_SESSION['email'])){
+                        if(isset($_SESSION['user'])){
                             echo '<h5 class="card-title mt-3 mb-3">Adresse de livraison :</h5>';
                             echo '<div class="row mb-4">';
                             echo '<code class="m-0 text-black">';
-                            echo $_SESSION['nom'] . ' ' . $_SESSION['prenom'] . '<br>';
-                            echo $_SESSION['adresse'] . '<br>';
-                            echo $_SESSION['telephone'] . '<br>';
+                            echo $_SESSION['user']['nom'] . ' ' . $_SESSION['user']['prenom'] . '<br>';
+                            echo $_SESSION['user']['adresse'] . '<br>';
+                            echo $_SESSION['user']['ville'] . '<br>';
+                            echo $_SESSION['user']['telephone'] . '<br>';
                             echo '</code>';
                             echo '</div>';
                         }

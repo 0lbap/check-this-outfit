@@ -51,8 +51,8 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user m-1 mt-0 mb-0"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                             <?php
-                                if(isset($_SESSION['email'])){
-                                    echo 'Bonjour, ' . $_SESSION['prenom'];
+                                if(isset($_SESSION['user'])){
+                                    echo 'Bonjour, ' . $_SESSION['user']['prenom'];
                                 } else {
                                     echo 'Compte';
                                 }
@@ -60,7 +60,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <?php
-                                if(isset($_SESSION['email'])){
+                                if(isset($_SESSION['user'])){
                                     echo '<li><a class="dropdown-item" href="commandes.php">';
                                     echo '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-bag"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>';
                                     echo '<span class="m-1 mt-0 mb-0"></span>';
