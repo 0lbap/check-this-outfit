@@ -188,7 +188,7 @@
                         <thead>
                             <tr>
                                 <th class="text-center col-6">Produit</th>
-                                <th class="text-center col-2">Prix</th>
+                                <th class="text-center col-2">Prix unitaire</th>
                                 <th class="text-center col-2">Quantité</th>
                                 <th class="text-center col-2">Supprimer</th>
                             </tr>
@@ -197,12 +197,12 @@
                         <?php
                             $total = 0;
                             $quantite_totale = 0;
-                            $test=array('1'=>1);
                             foreach($panier as $idProd => $quantite){
                                 $getproduct=$bdd->prepare("SELECT * FROM Produits WHERE idProduit= ?");
                                 $getproduct->execute(array($idProd));
                                 $productdata=$getproduct->fetch();
-                                $total = $quantite*$productdata['prix'];
+                                $prix = $quantite*$productdata['prix'];
+                                $total += $prix;
                                 $quantite_totale++;
                                 echo "<tr>";
                                 echo '<td>';
@@ -217,7 +217,7 @@
                                 echo '</div>';
                                 echo '</td>';
                                 echo '<td>';
-                                echo '<p class="text-center pt-4">' . $total . '€</p>';
+                                echo '<p class="text-center pt-4">' . $productdata['prix'] . '€</p>';
                                 echo '</td>';
                                 echo '<td>';
                                 echo '<p class="text-center pt-4">' . $quantite . '</p>';
@@ -246,14 +246,10 @@
                         <p class="col-6 card-text">Livraison</p>
                         <p class="col-6 card-text text-end">4.50€</p>
                     </div>
-                    <div class="row">
-                        <p class="col-6 card-text">TVA 20%</p>
-                        <p class="col-6 card-text text-end"><?php echo $total*0.2 ?>€</p>
-                    </div>
                     <hr>
                     <div class="row">
                         <p class="col-6 card-text fw-bold">Total</p>
-                        <p class="col-6 card-text fw-bold text-end"><?php echo $total*1.2+4.5 ?>€</p>
+                        <p class="col-6 card-text fw-bold text-end"><?php echo $total+4.5 ?>€</p>
                     </div>
                     <?php
                         if(isset($_SESSION['user'])){
