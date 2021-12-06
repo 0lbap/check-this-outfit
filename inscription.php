@@ -20,47 +20,63 @@
 <body>
     <main class="container">
         <div class="row">
-            <div class="col-md-2 col-lg-3"></div>
-            <div class="col-md-8 col-lg-6 p-4">
+            <div class="card col-md-8 col-lg-6 p-4 position-absolute top-50 start-50 translate-middle shadow">
                 <form class="row" action="inscription.php" method="POST">
-                    <h2 class="mb-3">Inscription</h2>
+                    <h2 class="mb-3 fw-light">Inscription</h2>
                     <div class="col-sm-6 mb-3">
-                        <label for="nom" class="form-label">Nom</label>
-                        <input type="text" class="form-control" id="nom" name="nom" placeholder="Delacroix">
+                        <div class="row m-0">
+                            <label for="nom" class="form-label">Nom</label>
+                            <input type="text" class="form-control rounded-pill" id="nom" name="nom" placeholder="Delacroix">
+                        </div>
                     </div>
                     <div class="col-sm-6 mb-3">
-                        <label for="prenom" class="form-label">Prénom</label>
-                        <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Eugène">
+                        <div class="row m-0">
+                            <label for="prenom" class="form-label">Prénom</label>
+                            <input type="text" class="form-control rounded-pill" id="prenom" name="prenom" placeholder="Eugène">
+                        </div>
                     </div>
                     <div class="col-sm-6 mb-3">
-                        <label for="email" class="form-label">Adresse email</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="nom@example.com">
+                        <div class="row m-0">
+                            <label for="email" class="form-label">Adresse email</label>
+                            <input type="email" class="form-control rounded-pill" id="email" name="email" placeholder="nom@example.com">
+                        </div>
                     </div>
                     <div class="col-sm-6 mb-3">
-                        <label for="telephone" class="form-label">Numéro de téléphone</label>
-                        <input type="tel" class="form-control" id="telephone" name="telephone" minlength="10" maxlength="10" pattern="[0-9]{10}" placeholder="0123456789">
+                        <div class="row m-0">
+                            <label for="telephone" class="form-label">Numéro de téléphone</label>
+                            <input type="tel" class="form-control rounded-pill" id="telephone" name="telephone" minlength="10" maxlength="10" pattern="[0-9]{10}" placeholder="0123456789">
+                        </div>
                     </div>
                     <div class="col-12 mb-3">
-                        <label for="password" class="form-label">Nouveau mot de passe</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="•••••••• (8 carractères minimum)">
+                        <div class="row m-0">
+                            <label for="password" class="form-label">Nouveau mot de passe</label>
+                            <input type="password" class="form-control rounded-pill" id="password" name="password" placeholder="•••••••• (8 carractères minimum)">
+                        </div>
                     </div>
                     <div class="col-12 mb-3">
-                        <label for="passconfirm" class="form-label">Confirmer le mot de passe</label>
-                        <input type="password" class="form-control" id="passconfirm" name="passconfirm" placeholder="••••••••">
+                        <div class="row m-0">
+                            <label for="passconfirm" class="form-label">Confirmer le mot de passe</label>
+                            <input type="password" class="form-control rounded-pill" id="passconfirm" name="passconfirm" placeholder="••••••••">
+                        </div>
                     </div>
                     <div class="col-sm-8 mb-3">
-                        <label for="adresse" class="form-label">Adresse</label>
-                        <input type="text" class="form-control" id="adresse" name="adresse" placeholder="6, rue de Furstenberg">
+                        <div class="row m-0">
+                            <label for="adresse" class="form-label">Adresse</label>
+                            <input type="text" class="form-control rounded-pill" id="adresse" name="adresse" placeholder="6, rue de Furstenberg">
+                        </div>
                     </div>
                     <div class="col-sm-4 mb-3">
-                        <label for="ville" class="form-label">Ville</label>
-                        <input type="text" class="form-control" id="ville" name="ville" placeholder="Paris">
+                        <div class="row m-0">
+                            <label for="ville" class="form-label">Ville</label>
+                            <input type="text" class="form-control rounded-pill" id="ville" name="ville" placeholder="Paris">
+                        </div>
                     </div>
                     <div class="col-12">
-                        <button type="submit" class="btn btn-primary rounded-pill">Confirmer</button>
+                        <div class="row m-0 mt-4 mb-4">
+                            <button type="submit" class="btn btn-primary rounded-pill">Confirmer</button>
+                        </div>
                     </div>
                 </form>
-                <br>
                 <?php
                     $bdd_user="root";
                     $bdd_password="root";
@@ -106,8 +122,11 @@
                         }
                     }
                 ?>
-                <p>Déjà inscris ? <a href="connexion.php">Connectez-vous !</a></p>
-                <a href="index.php">Retour à l'accueil</a>
+                <hr>
+                <div>
+                    <p>Déjà inscris ? <a href="connexion.php">Connectez-vous !</a></p>
+                    <a href="index.php">Retour à l'accueil</a>
+                </div>
             </div>
         </div>
     </main>
