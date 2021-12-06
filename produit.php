@@ -121,16 +121,20 @@
                     } else {
                         $panier = array();
                     }
-                    if($_GET['addpanier']<=$productdata['stock'] && $_GET['addpanier']>0){
-                        if(isset($panier[$idProd])){
-                            $panier[$idProd]+=$_GET['addpanier'];
+                    if(is_numeric($_GET['addpanier']) && $_GET['addpanier']>0){
+                        if($_GET['addpanier']+$panier[$idProd]<=$productdata['stock']){
+                            if(isset($panier[$idProd])){
+                                $panier[$idProd]+=$_GET['addpanier'];
+                            } else {
+                                $panier[$idProd]=(int)$_GET['addpanier'];
+                            }
+                            $_SESSION['panier'] = $panier;
+                            echo '<div class="alert alert-success m-0">Vous avez ajouté ' . $_GET['addpanier'] . ' ' . $productdata['nom'] . ' dans votre panier. <a href="panier.php" class="alert-link">Voir mon panier</a></div>';
                         } else {
-                            $panier[$idProd]=(int)$_GET['addpanier'];
+                            echo '<div class="alert alert-warning m-0">Impossible d\'ajouter ' . $_GET['addpanier'] . ' ' . $productdata['nom'] . ' dans votre panier (pas assez de stock).</div>';
                         }
-                        $_SESSION['panier'] = $panier;
-                        echo '<div class="alert alert-success m-0">Vous avez ajouté ' . $_GET['addpanier'] . ' ' . $productdata['nom'] . ' dans votre panier. <a href="panier.php" class="alert-link">Voir mon panier</a></div>';
                     } else {
-                        echo '<div class="alert alert-danger m-0">Impossible d\'ajouter ' . $_GET['addpanier'] . ' ' . $productdata['nom'] . ' dans votre panier (pas assez de stock ou quantité invalide).</div>';
+                        echo '<div class="alert alert-danger m-0">Impossible d\'ajouter ' . $_GET['addpanier'] . ' ' . $productdata['nom'] . ' dans votre panier (quantité invalide).</div>';
                     }
                 }
             ?>
