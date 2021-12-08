@@ -95,7 +95,7 @@ error_reporting(E_ALL);
         <div class="row p-4">
             <?php
                 if(!isset($_SESSION['user'])){
-                    echo '<div class="alert alert-primary">Connectez-vous pour voir vos commandes. <a class="alert-link" href="connexion.php">Connexion</a></div>';
+                    echo '<div class="alert alert-info">Connectez-vous pour voir vos commandes. <a class="alert-link" href="connexion.php">Connexion</a></div>';
                     die();
                 }
                 $email = $_SESSION['user']['email'];
@@ -116,7 +116,7 @@ error_reporting(E_ALL);
                 $commandesdata=$getcommandes->fetchAll();
 
                 if($getcommandes->rowcount()==0){
-                    echo '<div class="alert alert-primary">Vous n\'avez pas encore passé de commandes. <a class="alert-link" href="panier.php">Voir mon panier</a></div>';
+                    echo '<div class="alert alert-info">Vous n\'avez pas encore passé de commandes. <a class="alert-link" href="panier.php">Voir mon panier</a></div>';
                     die();
                 }
             ?>
@@ -126,7 +126,7 @@ error_reporting(E_ALL);
                         echo '<div class="card shadow p-4 mb-5">';
                         echo '<table class="table">';
                         echo '<tr>';
-                        echo '<th class="col-2 table-secondary">Commande n°13908130' . $commande['idCommande'] . '</th>';
+                        echo '<th class="col-3 table-secondary">N° de commande #139085' . $commande['idCommande'] . '</th>';
                         echo '<th class="col-6 table-secondary">Commandé le ' . $commande['dateCommandeF'] . '</th>';
                         echo '<th class="col-2 table-secondary">' . $commande['etat'] . '</th>';
                         echo '</tr>';
@@ -137,7 +137,7 @@ error_reporting(E_ALL);
 
                         foreach($lignescommandesdata as $lignecommande){
                             echo '<tr>';
-                            echo '<td class="col-2"><img src="' . $lignecommande['photo'] . '" class="img-fluid d-none d-md-block"></td>';
+                            echo '<td class="col-3"><img src="' . $lignecommande['photo'] . '" class="col-8 img-fluid d-none d-md-block"></td>';
                             echo '<td class="col-6">x' . $lignecommande['quantite'] . ' ' . $lignecommande['marque'] . ' - ' . $lignecommande['nom'] . '</td>';
                             echo '<td class="col-4">Montant : ' . $lignecommande['montant'] . '€</td>';
                             echo '</tr>';
