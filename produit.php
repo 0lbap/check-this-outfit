@@ -93,7 +93,7 @@
                 $idProd = $_GET['id'];
 
                 $bdd_user="root";
-                $bdd_password="root";
+                $bdd_password="";
                 try 
                     {
                         $bdd = new PDO("mysql:host=localhost;dbname=projet_web;charset=utf8", "$bdd_user", "$bdd_password");
@@ -118,6 +118,9 @@
                 if(isset($_GET['addpanier'])){
                     if(isset($_SESSION['panier'])){
                         $panier = $_SESSION['panier'];
+                        if(!isset($panier[$idProd])){
+                            $panier[$idProd] = 0;
+                        }
                     } else {
                         $panier = array();
                         $panier[$idProd] = 0;
