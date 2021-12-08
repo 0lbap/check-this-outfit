@@ -48,7 +48,6 @@ error_reporting(E_ALL);
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <?php
                                 if(isset($_SESSION['user'])){
-                                    echo '<li><a class="dropdown-item" href="panier.php">Mon panier</a></li>';
                                     echo '<li><a class="dropdown-item" href="commandes.php">Mes commandes</a></li>';
                                     echo '<li><hr class="dropdown-divider"></li>';
                                     echo '<li><a class="dropdown-item" href="deconnexion.php">Déconnexion</a></li>';
