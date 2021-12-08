@@ -38,8 +38,8 @@ error_reporting(E_ALL);
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <?php
-                                if(isset($_SESSION['email'])){
-                                    echo 'Bonjour, ' . $_SESSION['prenom'];
+                                if(isset($_SESSION['user'])){
+                                    echo 'Bonjour, ' . $_SESSION['user']['prenom'];
                                 } else {
                                     echo 'Compte';
                                 }
@@ -47,7 +47,7 @@ error_reporting(E_ALL);
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <?php
-                                if(isset($_SESSION['email'])){
+                                if(isset($_SESSION['user'])){
                                     echo '<li><a class="dropdown-item" href="panier.php">Mon panier</a></li>';
                                     echo '<li><a class="dropdown-item" href="commandes.php">Mes commandes</a></li>';
                                     echo '<li><hr class="dropdown-divider"></li>';
@@ -66,11 +66,11 @@ error_reporting(E_ALL);
     <main class="container pt-5">
         <div class="row p-4">
             <?php
-                if(!isset($_SESSION['email'])){
+                if(!isset($_SESSION['user'])){
                     echo '<div class="alert alert-primary">Connectez-vous pour voir vos commandes. <a class="alert-link" href="connexion.php">Connexion</a></div>';
                     die();
                 }
-                $email = $_SESSION['email'];
+                $email = $_SESSION['user']['email'];
 
                 $bdd_user="root";
                 $bdd_password="root";
