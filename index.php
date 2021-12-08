@@ -29,7 +29,7 @@
                                 <a class="nav-link" href="recherche.php">Produits</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">À propos</a>
+                                <a class="nav-link" href="a_propos.php">À propos</a>
                             </li>
                         </ul>
                         <ul class="navbar-nav ms-auto">

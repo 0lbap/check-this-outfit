@@ -31,7 +31,7 @@ error_reporting(E_ALL);
                         <a class="nav-link active" href="#">Produits</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">À propos</a>
+                        <a class="nav-link" href="a_propos.php">À propos</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
