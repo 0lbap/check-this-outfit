@@ -120,6 +120,7 @@
                         $panier = $_SESSION['panier'];
                     } else {
                         $panier = array();
+                        $panier[$idProd] = 0;
                     }
                     if(is_numeric($_GET['addpanier']) && $_GET['addpanier']>0){
                         if($_GET['addpanier']+$panier[$idProd]<=$productdata['stock']){
