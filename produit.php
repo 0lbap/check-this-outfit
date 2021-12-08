@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
     <title>Produit • Projet Web</title>
 </head>
@@ -93,7 +94,7 @@
                 $idProd = $_GET['id'];
 
                 $bdd_user="root";
-                $bdd_password="";
+                $bdd_password="root";
                 try 
                     {
                         $bdd = new PDO("mysql:host=localhost;dbname=projet_web;charset=utf8", "$bdd_user", "$bdd_password");
@@ -108,8 +109,7 @@
                 $productdata=$getproduct->fetch();
 
                 if(!isset($idProd) || !is_numeric($idProd) || !$getproduct->rowcount()==1){
-                    echo '<div class="alert alert-danger">Ce produit n\'existe pas ou a été supprimé</div>';
-                    echo '<a href="recherche.php">Retour à la recherche</a>';
+                    echo '<div class="alert alert-danger">Ce produit n\'existe pas ou a été supprimé. <a href="recherche.php" class="alert-link">Retour à la recherche</a></div>';
                     die();
                 }
 
@@ -171,6 +171,5 @@
             </div>
         </div>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
