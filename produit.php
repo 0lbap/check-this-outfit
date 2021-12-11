@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php
+    session_start();
+    include 'bdd.php';
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -92,17 +95,6 @@
         <div class="row p-4">
             <?php
                 $idProd = $_GET['id'];
-
-                $bdd_user="root";
-                $bdd_password="root";
-                try 
-                    {
-                        $bdd = new PDO("mysql:host=localhost;dbname=projet_web;charset=utf8", "$bdd_user", "$bdd_password");
-                    }
-                catch(PDOException $e)
-                    {
-                        die('Erreur : '.$e->getMessage());
-                    }
                 
                 $getproduct=$bdd->prepare("SELECT * FROM Produits WHERE idProduit= ?");
                 $getproduct->execute(array($idProd));
@@ -112,7 +104,6 @@
                     echo '<div class="alert alert-danger">Ce produit n\'existe pas ou a été supprimé. <a href="recherche.php" class="alert-link">Retour à la recherche</a></div>';
                     die();
                 }
-
 
                 // Format du panier : clé=idProd, valeur=quantité
                 if(isset($_GET['addpanier'])){
