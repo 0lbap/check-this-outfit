@@ -1,7 +1,10 @@
-<?php session_start(); 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+<?php
+    session_start(); 
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+    
+    include 'bdd.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -100,17 +103,6 @@ error_reporting(E_ALL);
                     die();
                 }
                 $email = $_SESSION['user']['email'];
-
-                $bdd_user="root";
-                $bdd_password="root";
-                try 
-                    {
-                        $bdd = new PDO("mysql:host=localhost;dbname=projet_web;charset=utf8", "$bdd_user", "$bdd_password");
-                    }
-                catch(PDOException $e)
-                    {
-                        die('Erreur : '.$e->getMessage());
-                    }
                 
                 $getcommandes=$bdd->prepare("SELECT *,DATE_FORMAT(dateCommande, '%d/%m/%Y') as dateCommandeF FROM Commandes WHERE email=? ORDER BY dateCommande DESC");
                 $getcommandes->execute(array($email));
