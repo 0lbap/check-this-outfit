@@ -101,11 +101,15 @@
                     <h3>Rechercher</h3>
                     <div class="mb-3">
                         <label for="nom"><h6>Nom :</h6></label>
-                        <input type="text" class="form-control" name="nom" id="nom" placeholder="ex : Sweat...">
+                        <?php
+                            echo '<input type="text" class="form-control" name="nom" id="nom" placeholder="ex : Sweat..." value="' . $_GET['nom'] . '">';
+                        ?>
                     </div>
                     <div class="mb-3">
                         <label for="motscles"><h6>Mots-clés :</h6></label>
-                        <input type="text" class="form-control" name="motscles" id="motscles" placeholder="ex : Coton...">
+                        <?php
+                            echo '<input type="text" class="form-control" name="motscles" id="motscles" placeholder="ex : Coton..." value="' . $_GET['motscles'] . '">';
+                        ?>
                     </div>
                     <div class="mb-3">
                         <h6>Marques :</h6>
@@ -117,7 +121,11 @@
                             foreach($marquesdata as $marque){
                                 echo '<div class="form-check">';
                                 echo '<label class="form-check-label" for="check-marq-' . strtolower($marque['marque']) . '">' . $marque['marque'] . '</label>';
-                                echo '<input type="checkbox" class="form-check-input" name="marque[]" value="' . strtolower($marque['marque']) . '" id="check-marq-' . strtolower($marque['marque']) . '">';
+                                echo '<input type="checkbox" class="form-check-input" name="marque[]" value="' . strtolower($marque['marque']) . '" id="check-marq-' . strtolower($marque['marque']) . '"';
+                                if(isset($_GET['marque']) && in_array(strtolower($marque['marque']),$_GET['marque'])){
+                                    echo 'checked';
+                                }
+                                echo '>';
                                 echo '</div>';
                             }
                         ?>
@@ -132,7 +140,11 @@
                             foreach($categoriesdata as $categorie){
                                 echo '<div class="form-check">';
                                 echo '<label class="form-check-label" for="check-cat-' . strtolower($categorie['categorie']) . '">' . $categorie['categorie'] . '</label>';
-                                echo '<input type="checkbox" class="form-check-input" name="categorie[]" value="' . strtolower($categorie['categorie']) . '" id="check-cat-' . strtolower($categorie['categorie']) . '">';
+                                echo '<input type="checkbox" class="form-check-input" name="categorie[]" value="' . strtolower($categorie['categorie']) . '" id="check-cat-' . strtolower($categorie['categorie']) . '"';
+                                if(isset($_GET['categorie']) && in_array(strtolower($categorie['categorie']),$_GET['categorie'])){
+                                    echo 'checked';
+                                }
+                                echo '>';
                                 echo '</div>';
                             }
                         ?>
@@ -147,7 +159,11 @@
                             foreach($couleursdata as $couleur){
                                 echo '<div class="form-check">';
                                 echo '<label class="form-check-label" for="check-coul-' . strtolower($couleur['couleur']) . '">' . $couleur['couleur'] . '</label>';
-                                echo '<input type="checkbox" class="form-check-input" name="couleur[]" value="' . strtolower($couleur['couleur']) . '" id="check-coul-' . strtolower($couleur['couleur']) . '">';
+                                echo '<input type="checkbox" class="form-check-input" name="couleur[]" value="' . strtolower($couleur['couleur']) . '" id="check-coul-' . strtolower($couleur['couleur']) . '"';
+                                if(isset($_GET['couleur']) && in_array(strtolower($couleur['couleur']),$_GET['couleur'])){
+                                    echo 'checked';
+                                }
+                                echo '>';
                                 echo '</div>';
                             }
                         ?>
