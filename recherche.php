@@ -1,7 +1,10 @@
-<?php session_start(); 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+<?php
+    session_start(); 
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+    
+    include 'bdd.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -91,18 +94,6 @@ error_reporting(E_ALL);
             </div>
         </div>
     </nav>
-    <?php
-        $bdd_user="root";
-        $bdd_password="root";
-        try 
-            {
-                $bdd = new PDO("mysql:host=localhost;dbname=projet_web;charset=utf8", "$bdd_user", "$bdd_password");
-            }
-        catch(PDOException $e)
-            {
-                die('Erreur : '.$e->getMessage());
-            }
-    ?>
     <main class="container pt-5">
         <div class="row mt-4">
             <div class="col-md-3 p-4 pb-3 pt-0 border-end">
@@ -275,7 +266,7 @@ error_reporting(E_ALL);
                             }
                         }
 
-                        // Binding des paramètres et exécution:
+                        // Binding des paramètres et exécution :
                         $getproducts=$bdd->prepare($sql);
                         $getproducts->execute($params);
                         $productsdata=$getproducts->fetchAll();
