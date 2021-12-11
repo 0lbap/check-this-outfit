@@ -3,10 +3,12 @@
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
-
+    
     if(isset($_SESSION['user'])){
         header('location:index.php');
     }
+
+    include 'bdd.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -36,16 +38,6 @@
                     </div>
                 </form>
                 <?php
-                    $bdd_user="root";
-                    $bdd_password="root";
-                    try
-                        {
-                            $bdd = new PDO("mysql:host=localhost;dbname=projet_web;charset=utf8", "$bdd_user", "$bdd_password");
-                        }
-                    catch(PDOException $e)
-                        {
-                            die('Erreur : '.$e->getMessage());
-                        }
                     $erreur="";
                     if(isset($_POST['email']) && isset($_POST['password'])){
                         $emailconnect=htmlspecialchars($_POST['email']);
