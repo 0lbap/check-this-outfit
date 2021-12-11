@@ -32,7 +32,7 @@
                         <input type="password" class="form-control rounded-pill" id="password" name="password" placeholder="••••••••">
                     </div>
                     <div class="row m-0 mt-4 mb-4">
-                        <button type="submit" class="btn btn-primary rounded-pill">Confirmer</button>
+                        <button type="submit" class="btn btn-dark rounded-pill">Confirmer</button>
                     </div>
                 </form>
                 <?php
@@ -65,8 +65,8 @@
                 ?>
                 <hr>
                 <div>
-                    <p>Pas de compte ? <a href="inscription.php">Inscrivez-vous !</a></p>
-                    <a href="index.php">Retour à l'accueil</a>
+                    <p>Pas de compte ? <a href="inscription.php" class="link-secondary">Inscrivez-vous !</a></p>
+                    <a href="index.php" class="link-secondary">Retour à l'accueil</a>
                 </div>
             </div>
         </div>
