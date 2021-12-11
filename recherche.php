@@ -299,7 +299,7 @@
                             echo '<div class="card">';
                             echo '<img src="' . $product['photo'] . '" class="card-img-top" alt="Image du produit indisponible">';
                             echo '<div class="card-body">';
-                            echo '<h5 class="card-title">' . $product['nom'] . '</h5>';
+                            echo '<b class="card-title">' . strtoupper($product['marque']) . ' ' . $product['nom'] . ' — ' . $product['categorie'] . '</b>';
                             echo '<p class="card-text">' . $product['prix'] . '€</p>';
                             echo '</div>';
                             echo '</div>';
