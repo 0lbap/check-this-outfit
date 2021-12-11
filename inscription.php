@@ -6,9 +6,9 @@ error_reporting(E_ALL);
 
 if(isset($_SESSION['user'])){
     header('location:index.php');
-    }
+}
 $bdd_user="root";
-$bdd_password="";
+$bdd_password="root";
 try
 {
     $bdd = new PDO("mysql:host=localhost;dbname=projet_web;charset=utf8", "$bdd_user", "$bdd_password");
@@ -27,7 +27,7 @@ if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && 
     $ville=$_POST['ville'];
     $adresse=$_POST['adresse'];
     $telephone=$_POST['telephone'];
-    if(!empty($email) AND !empty($password) AND !empty($passconfirm) AND !empty($nom) AND !empty($prenom)AND !empty($ville) AND !empty($adresse) AND !empty($telephone)){
+    if(!empty($email) && !empty($password) && !empty($passconfirm) && !empty($nom) && !empty($prenom) && !empty($ville) && !empty($adresse) && !empty($telephone)){
         if(filter_var($email, FILTER_VALIDATE_EMAIL)){
             if(strlen($password)>=8){
                 if($password==$passconfirm){
@@ -49,7 +49,7 @@ if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && 
     }
 }
 ?>
-                <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -60,8 +60,8 @@ if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && 
 </head>
 <body>
     <main class="container">
-        <div class="row">
-            <div class="card col-md-8 col-lg-6 p-4 position-absolute top-50 start-50 translate-middle shadow">
+        <div class="row justify-content-center">
+            <div class="card col-md-10 col-lg-8 p-4 mt-sm-3 shadow">
                 <form class="row" action="inscription.php" method="POST">
                     <h2 class="mb-3 fw-light">Inscription</h2>
                     <div class="col-sm-6 mb-3">
@@ -114,14 +114,14 @@ if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && 
                     </div>
                     <div class="col-12">
                         <div class="row m-0 mt-4 mb-4">
-                            <button type="submit" class="btn btn-primary rounded-pill">Confirmer</button>
+                            <button type="submit" class="btn btn-dark rounded-pill">Confirmer</button>
                         </div>
                     </div>
                 </form>
                 <hr>
                 <div>
-                    <p>Déjà inscris ? <a href="connexion.php">Connectez-vous !</a></p>
-                    <a href="index.php">Retour à l'accueil</a>
+                    <p>Déjà inscris ? <a href="connexion.php" class="link-secondary">Connectez-vous !</a></p>
+                    <a href="index.php" class="link-secondary">Retour à l'accueil</a>
                 </div>
             </div>
         </div>
