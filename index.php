@@ -102,8 +102,8 @@
     </div>
     <div class="second-screen">
         <div class="row infocard p-4" id="ic1">
-            <div class="col-md-6">
-                <div class="row">
+            <div class="col-md-6 position-relative">
+                <div class="row position-absolute top-50 translate-middle-y">
                     <div class="col-md-3 col-lg-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-truck"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
                     </div>
@@ -115,9 +115,9 @@
             </div>
         </div>
         <div class="row infocard p-4" id="ic2">
-            <div class="col-md-6"></div>
-            <div class="col-md-6">
-                <div class="row">
+            <div class="col-md-6 d-none d-md-block"></div>
+            <div class="col-md-6 position-relative">
+                <div class="row position-absolute top-50 translate-middle-y">
                     <div class="col-md-3 col-lg-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                     </div>
@@ -126,12 +126,11 @@
                         <p>Nos produits sont neufs et achettés dirrectement à l'usine. De plus, ils sont transportés par nos transporteurs certifiés, ce qui réduit le risque de produits défectueux.</p>
                     </div>
                 </div>
-                
             </div>
         </div>
         <div class="row infocard p-4" id="ic3">
-            <div class="col-md-6">
-                <div class="row">
+            <div class="col-md-6 position-relative">
+                <div class="row position-absolute top-50 translate-middle-y">
                     <div class="col-md-3 col-lg-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                     </div>
