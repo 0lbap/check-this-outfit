@@ -1,53 +1,46 @@
 <?php
-session_start();
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+    session_start();
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
 
-if(isset($_SESSION['user'])){
-    header('location:index.php');
-}
-$bdd_user="root";
-$bdd_password="root";
-try
-{
-    $bdd = new PDO("mysql:host=localhost;dbname=projet_web;charset=utf8", "$bdd_user", "$bdd_password");
-}
-catch(PDOException $e)
-{
-    die('Erreur : '.$e->getMessage());
-}
-$erreur="";
-if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['passconfirm'])&& isset($_POST['ville']) && isset($_POST['adresse']) && isset($_POST['telephone'])){
-    $email=$_POST['email'];
-    $password=$_POST['password'];
-    $passconfirm=$_POST['passconfirm'];
-    $nom=$_POST['nom'];
-    $prenom=$_POST['prenom'];
-    $ville=$_POST['ville'];
-    $adresse=$_POST['adresse'];
-    $telephone=$_POST['telephone'];
-    if(!empty($email) && !empty($password) && !empty($passconfirm) && !empty($nom) && !empty($prenom) && !empty($ville) && !empty($adresse) && !empty($telephone)){
-        if(filter_var($email, FILTER_VALIDATE_EMAIL)){
-            if(strlen($password)>=8){
-                if($password==$passconfirm){
-                    $reqmail = $bdd->prepare('SELECT email FROM clients WHERE email = ?');
-                    $reqmail-> execute(array($email));
-                    if($reqmail->rowcount() == 0){
-                        $password = password_hash($password,PASSWORD_DEFAULT);
-                        $insertmbr = $bdd->prepare('INSERT INTO clients (email,motDePasse,nom,prenom,ville,adresse,telephone) VALUES(?,?,?,?,?,?,?)');
-                        $insertmbr->execute(array($email,$password,$nom,$prenom,$ville,$adresse,$telephone));
-                        echo '<div class="alert alert-success" role="alert">Compte créé ! Vous allez être redirigé...</div>';
-                        header('refresh:3; url=connexion.php');
-                    } else $erreur="Adresse mail déjà utilisée";
-                } else $erreur="Vos mots de passe ne correspondent pas";
-            } else $erreur="Le mot de passe doit faire plus de 8 carractères";
-        } else $erreur="Veuillez saisir une adresse mail valide";
-    } else $erreur="Veuillez saisir tous les champs";
-    if(!empty($erreur)){
-        echo '<div class="alert alert-danger" role="alert">'.$erreur.'</div>';
+    if(isset($_SESSION['user'])){
+        header('location:index.php');
     }
-}
+
+    include 'bdd.php';
+
+    $erreur="";
+    if(isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['passconfirm'])&& isset($_POST['ville']) && isset($_POST['adresse']) && isset($_POST['telephone'])){
+        $email=$_POST['email'];
+        $password=$_POST['password'];
+        $passconfirm=$_POST['passconfirm'];
+        $nom=$_POST['nom'];
+        $prenom=$_POST['prenom'];
+        $ville=$_POST['ville'];
+        $adresse=$_POST['adresse'];
+        $telephone=$_POST['telephone'];
+        if(!empty($email) && !empty($password) && !empty($passconfirm) && !empty($nom) && !empty($prenom) && !empty($ville) && !empty($adresse) && !empty($telephone)){
+            if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+                if(strlen($password)>=8){
+                    if($password==$passconfirm){
+                        $reqmail = $bdd->prepare('SELECT email FROM clients WHERE email = ?');
+                        $reqmail-> execute(array($email));
+                        if($reqmail->rowcount() == 0){
+                            $password = password_hash($password,PASSWORD_DEFAULT);
+                            $insertmbr = $bdd->prepare('INSERT INTO clients (email,motDePasse,nom,prenom,ville,adresse,telephone) VALUES(?,?,?,?,?,?,?)');
+                            $insertmbr->execute(array($email,$password,$nom,$prenom,$ville,$adresse,$telephone));
+                            echo '<div class="alert alert-success" role="alert">Compte créé ! Vous allez être redirigé...</div>';
+                            header('refresh:3; url=connexion.php');
+                        } else $erreur="Adresse mail déjà utilisée";
+                    } else $erreur="Vos mots de passe ne correspondent pas";
+                } else $erreur="Le mot de passe doit faire plus de 8 carractères";
+            } else $erreur="Veuillez saisir une adresse mail valide";
+        } else $erreur="Veuillez saisir tous les champs";
+        if(!empty($erreur)){
+            echo '<div class="alert alert-danger" role="alert">'.$erreur.'</div>';
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="fr">
