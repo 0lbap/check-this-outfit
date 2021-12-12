@@ -23,11 +23,11 @@
         </div>
         <div class="container">
             <div class="row pb-5 chevron-down">
-                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                <a href="#second-screen"><svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
             </div>
         </div>
     </div>
-    <div class="second-screen">
+    <div class="second-screen" id="second-screen">
         <div class="row infocard p-4" id="ic1">
             <div class="col-md-6 position-relative">
                 <div class="row position-absolute top-50 translate-middle-y">
