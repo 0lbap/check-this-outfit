@@ -102,13 +102,21 @@
                     <div class="mb-3">
                         <label for="nom"><h6>Nom :</h6></label>
                         <?php
-                            echo '<input type="text" class="form-control" name="nom" id="nom" placeholder="ex : Sweat..." value="' . $_GET['nom'] . '">';
+                            echo '<input type="text" class="form-control" name="nom" id="nom" placeholder="ex : Sweat..."';
+                            if(isset($_GET['nom'])){
+                                echo ' value="' . $_GET['nom'] . '"';
+                            }
+                            echo '>';
                         ?>
                     </div>
                     <div class="mb-3">
                         <label for="motscles"><h6>Mots-clés :</h6></label>
                         <?php
-                            echo '<input type="text" class="form-control" name="motscles" id="motscles" placeholder="ex : Coton..." value="' . $_GET['motscles'] . '">';
+                            echo '<input type="text" class="form-control" name="motscles" id="motscles" placeholder="ex : Coton..."';
+                            if(isset($_GET['motscles'])){
+                                echo ' value="' . $_GET['motscles'] . '"';
+                            }
+                            echo '>';
                         ?>
                     </div>
                     <div class="mb-3">
