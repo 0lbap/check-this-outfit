@@ -14,5 +14,5 @@ Projet de l'UE HAI305I Programation Web.
 
 1. Clonez ou téléchargez ce projet git dans le dossier public de votre serveur web.
 2. Sur phpMyAdmin, créez une base de donnée de nom `projet_web` et exécutez les fichiers `tables.sql` et `donnees.sql`.
-3. L'identifiant et le mot de passe de la base de donnée doivent être tous deux `root`.
+3. Renseignez l'identifiant et le mot de passe de votre base de donnée dans les variables `$bdd_user` et `$bdd_user` du fichier `bdd.php`.
 4. Le site devrait être opérationnel.
