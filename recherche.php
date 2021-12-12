@@ -23,7 +23,7 @@
     ?>
     <main class="container pt-5">
         <div class="row mt-4">
-            <div class="col-md-3 p-4 pb-3 pt-0 border-end">
+            <div class="col-md-3 p-4 pb-3 pt-0 border-end h-100">
                 <form action="recherche.php" method="GET">
                     <h3>Rechercher</h3>
                     <div class="mb-3">
