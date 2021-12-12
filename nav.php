@@ -20,8 +20,8 @@
                 </li>
                 <li class="nav-item">
                     <?php
-                        if($nav_active == "recherche"){
-                            echo '<a class="nav-link active" href="#">Produits</a>';
+                        if($nav_active == "recherche" || $nav_active == "produit"){
+                            echo '<a class="nav-link active" href="recherche.php">Produits</a>';
                         } else {
                             echo '<a class="nav-link" href="recherche.php">Produits</a>';
                         }
