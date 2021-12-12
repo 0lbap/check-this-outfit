@@ -1,6 +1,6 @@
 <?php echo '<nav class="' . $nav_style . '">'; ?>
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="index.php">
             <img src="https://via.placeholder.com/30x30.png?text=LOGO" alt="LOGO">
             Projet Web
         </a>
