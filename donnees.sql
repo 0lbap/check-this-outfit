@@ -1,11 +1,16 @@
-INSERT INTO Clients (email, motDePasse, nom, prenom, ville, adresse, telephone) VALUES ("pablo.laviron@etu.umontpellier.fr", "$2y$10$uqCQMwn592CuQeaa1rdZA.R3/2kNQn85DaBKbFlNNuy5gmEklRnOm", "Laviron", "Pablo", "Montpellier", "4 Impasse de la fontaine", "0712345678"); -- Mdp = password
-INSERT INTO Clients (email, motDePasse, nom, prenom, ville, adresse, telephone) VALUES ("axel.cazorla@etu.umontpellier.fr", "$2y$10$2r3wtOjStccDNPLV0l53x.f4Yq2MlCjdfzmCXaQz0piVPn9JTNGyG", "Cazorla", "Axel", "Montpellier", "103 Rue de l école", "0723456789"); -- Mdp = 12345678
-INSERT INTO Commandes (dateCommande, email, etat) VALUES ("2020-10-12", "pablo.laviron@etu.umontpellier.fr", "En cours");
-INSERT INTO Commandes (dateCommande, email, etat) VALUES ("2020-06-24", "axel.cazorla@etu.umontpellier.fr", "Livré");
-INSERT INTO Lignescommandes (idCommande, idProduit, quantite, montant) VALUES (1, 2, 1, 890.99);
-INSERT INTO Lignescommandes (idCommande, idProduit, quantite, montant) VALUES (2, 1, 3, 2489.97);
-ALTER TABLE  produits AUTO_INCREMENT =0;
-INSERT INTO `produits` (nom, marque, categorie, descriptif, photo, prix, stock, couleur) VALUES
+INSERT INTO Clients (email, motDePasse, nom, prenom, ville, adresse, telephone) VALUES
+("pablo.laviron@etu.umontpellier.fr", "$2y$10$uqCQMwn592CuQeaa1rdZA.R3/2kNQn85DaBKbFlNNuy5gmEklRnOm", "Laviron", "Pablo", "Montpellier", "4 Impasse de la fontaine", "0712345678"), -- Mdp = password
+("axel.cazorla@etu.umontpellier.fr", "$2y$10$2r3wtOjStccDNPLV0l53x.f4Yq2MlCjdfzmCXaQz0piVPn9JTNGyG", "Cazorla", "Axel", "Montpellier", "103 Rue de l école", "0723456789"); -- Mdp = 12345678
+ALTER TABLE Commandes AUTO_INCREMENT = 1;
+INSERT INTO Commandes (dateCommande, email, etat) VALUES 
+("2020-10-12", "pablo.laviron@etu.umontpellier.fr", "En cours"),
+("2020-06-24", "axel.cazorla@etu.umontpellier.fr", "Livré");
+ALTER TABLE Lignescommandes AUTO_INCREMENT = 1;
+INSERT INTO Lignescommandes (idCommande, idProduit, quantite, montant) VALUES
+(1, 2, 1, 890.99),
+(2, 1, 3, 2489.97);
+ALTER TABLE Produits AUTO_INCREMENT = 1;
+INSERT INTO Produits (nom, marque, categorie, descriptif, photo, prix, stock, couleur) VALUES
 ('Classic Crew', 'Vans', 'T-shirt', 'blablabla', 'images/produits/1.jpg', 48.95, 49, 'Noir'),
 ('Carbon', 'Element', 'Veste', 'blablabla', 'images/produits/2.jpg', 38.95, 40, 'Noirs'),
 ('Off white', 'Vans', 'Sweatshirt', 'blablabla', 'images/produits/3.jpg', 75, 11, 'Noir'),
