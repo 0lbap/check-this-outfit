@@ -86,7 +86,7 @@
                                 $ajoutLigneCommande->execute(array(NULL,$last_id,$idProd,$quantite,$total));
                             }
 
-                            echo '<div class="alert alert-success">Votre commande a bien été effectuée. Vous allez recevoir un mail avec votre suivis de colis. Merci d\'avoir acheté sur notre site et à bientôt !</div>';
+                            echo '<div class="alert alert-success">Votre commande a bien été effectuée. Merci d\'avoir acheté sur notre site ! <a href="commandes.php" class="alert-link">Voir l\'état de mes commandes</a></div>';
                             $_SESSION['panier']=array();
                             exit(); 
                         }
