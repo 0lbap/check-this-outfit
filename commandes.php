@@ -46,9 +46,14 @@
                         echo '<div class="card shadow p-4 mb-5">';
                         echo '<table class="table">';
                         echo '<tr>';
-                        echo '<th class="col-3 table-secondary">N° de commande #139085' . $commande['idCommande'] . '</th>';
-                        echo '<th class="col-6 table-secondary">Commandé le ' . $commande['dateCommandeF'] . '</th>';
-                        echo '<th class="col-2 table-secondary">' . $commande['etat'] . '</th>';
+                        if($commande['etat'] == "Livré"){
+                            $couleur = "success";
+                        } else {
+                            $couleur = "warning";
+                        }
+                        echo '<th class="col-3 table-' . $couleur . '">N° de commande #139085' . $commande['idCommande'] . '</th>';
+                        echo '<th class="col-6 table-' . $couleur . '">Commandé le ' . $commande['dateCommandeF'] . '</th>';
+                        echo '<th class="col-2 table-' . $couleur . '">' . $commande['etat'] . '</th>';
                         echo '</tr>';
 
                         $getlignescommandes=$bdd->prepare("SELECT * FROM LignesCommandes,Produits WHERE LignesCommandes.idProduit = Produits.idProduit AND idCommande=?");
