@@ -71,7 +71,7 @@
                         if(!$stocksOK){
                             echo '<div class="alert alert-warning mb-4">Il n\'y a pas assez de stock disponible, veuillez modifier votre commande.</div>';
                         } else {
-                            $ajoutCommande= $bdd -> prepare("INSERT INTO commandes VALUES(?,?,?,?)");
+                            $ajoutCommande= $bdd -> prepare("INSERT INTO Commandes VALUES (?,?,?,?)");
                             $ajoutCommande->execute(array(NULL,date('Y-m-d H:i:s'),$_SESSION['user']['email'],'En cours'));
                             $last_id=$bdd->lastInsertId();
 
@@ -79,10 +79,10 @@
                                 $getproduct=$bdd->prepare("SELECT * FROM Produits WHERE idProduit= ?");
                                 $getproduct->execute(array($idProd));
                                 $productdata=$getproduct->fetch();
-                                $updatestock = $bdd->prepare('UPDATE produits SET stock = ? WHERE idProduit = ?');
+                                $updatestock = $bdd->prepare('UPDATE Produits SET stock = ? WHERE idProduit = ?');
                                 $updatestock -> execute(array($productdata['stock']-$quantite,$idProd));
                                 $total = $quantite*$productdata['prix'];
-                                $ajoutLigneCommande = $bdd->prepare("INSERT INTO lignescommandes VALUES(?,?,?,?,?)");
+                                $ajoutLigneCommande = $bdd->prepare("INSERT INTO Lignescommandes VALUES (?,?,?,?,?)");
                                 $ajoutLigneCommande->execute(array(NULL,$last_id,$idProd,$quantite,$total));
                             }
 
