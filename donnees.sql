@@ -7,8 +7,8 @@ INSERT INTO Commandes (dateCommande, email, etat) VALUES
 ("2020-06-24", "axel.cazorla@etu.umontpellier.fr", "Livré");
 ALTER TABLE Lignescommandes AUTO_INCREMENT = 1;
 INSERT INTO Lignescommandes (idCommande, idProduit, quantite, montant) VALUES
-(1, 2, 1, 890.99),
-(2, 1, 3, 2489.97);
+(1, 2, 1, 119.90),
+(2, 1, 3, 86.85);
 ALTER TABLE Produits AUTO_INCREMENT = 1;
 INSERT INTO Produits (nom, marque, categorie, descriptif, photo, prix, stock, couleur) VALUES
 ('Classic Crew', 'Vans', 'T-shirt', 'T-shirt en coton et polyester, noir avec logo blanc, manches longues.', 'images/produits/1.jpg', 28.95, 49, 'Noir'),
