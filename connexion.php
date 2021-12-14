@@ -9,6 +9,23 @@
     }
 
     include 'bdd.php';
+
+    $erreur="";
+    if(isset($_POST['email']) && isset($_POST['password'])){
+        $emailconnect=htmlspecialchars($_POST['email']);
+        $passwordconnect=$_POST['password'];
+        if(!empty($emailconnect) && !empty($passwordconnect)){
+            $verifuser=$bdd->prepare("SELECT * FROM Clients WHERE email= ?");
+            $verifuser->execute(array($emailconnect));
+            $userdata=$verifuser->fetch();
+            if($verifuser->rowcount() == 1 && password_verify($passwordconnect,$userdata['motDePasse'])){
+                $_SESSION['user']=$userdata;
+                header('location:index.php');
+            } else $erreur='<div class="alert alert-danger" role="alert">Identifiant ou mot de passe incorrect</div>';
+        } else $erreur='<div class="alert alert-warning" role="alert">Veuillez saisir tous les champs</div>';
+
+        echo "$erreur";
+    }
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -37,24 +54,6 @@
                         <button type="submit" class="btn btn-dark rounded-pill">Confirmer</button>
                     </div>
                 </form>
-                <?php
-                    $erreur="";
-                    if(isset($_POST['email']) && isset($_POST['password'])){
-                        $emailconnect=htmlspecialchars($_POST['email']);
-                        $passwordconnect=$_POST['password'];
-                        if(!empty($emailconnect) && !empty($passwordconnect)){
-                            $verifuser=$bdd->prepare("SELECT * FROM clients WHERE email= ?");
-                            $verifuser->execute(array($emailconnect));
-                            $userdata=$verifuser->fetch();
-                            if($verifuser->rowcount() == 1 && password_verify($passwordconnect,$userdata['motDePasse'])){
-                                $_SESSION['user']=$userdata;
-                                header('location:index.php');
-                            } else $erreur='<div class="alert alert-danger" role="alert">Identifiant ou mot de passe incorrect</div>';
-                        } else $erreur='<div class="alert alert-warning" role="alert">Veuillez saisir tous les champs</div>';
-
-                        echo "$erreur";
-                    }
-                ?>
                 <hr>
                 <div>
                     <p>Pas de compte ? <a href="inscription.php" class="link-secondary">Inscrivez-vous !</a></p>
