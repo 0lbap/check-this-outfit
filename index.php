@@ -49,8 +49,8 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                     </div>
                     <div class="col-md-9">
-                        <h3>Produits de qualité</h3>
-                        <p>Nos produits sont neufs et achettés dirrectement à l'usine. De plus, ils sont transportés par nos transporteurs certifiés, ce qui réduit le risque de produits défectueux.</p>
+                        <h3>Articles de qualité</h3>
+                        <p>Nos articles sont neufs et achetés directement à nos fournisseurs de confiance. De plus, ils sont transportés par notre équipe certifiée, ce qui réduit le risque de perte ou de mauvais état.</p>
                     </div>
                 </div>
             </div>
@@ -63,7 +63,7 @@
                     </div>
                     <div class="col-md-9">
                         <h3>Service après vente</h3>
-                        <p>Vous n'êtes pas satifsait par un produit acheté chez nous ? Ce n'est pas grave, vous avez 2 mois pour le renvoyer et ainsi bénéficier d'un coupon de réduction !</p>
+                        <p>Vous n'êtes pas satifsait par un article acheté chez nous ? Ce n'est pas grave, vous avez 2 mois pour le renvoyer et ainsi bénéficier d'un coupon de réduction !</p>
                     </div>
                 </div>
             </div>
