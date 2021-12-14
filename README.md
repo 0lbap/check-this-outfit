@@ -7,6 +7,9 @@ Projet de l'UE HAI305I Programation Web.
 - [Laviron Pablo](https://github.com/0lbap)
 - [Cazorla Axel](https://github.com/Ethazio)
 
+## Visiter le site
+
+Nous avons hébergé notre site et vous pouvez y accéder à l'URL https://check-this-outfit.fr/ !
 
 ## Installation
 
