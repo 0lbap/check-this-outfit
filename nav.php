@@ -1,8 +1,7 @@
 <?php echo '<nav class="' . $nav_style . '">'; ?>
     <div class="container-fluid">
-        <a class="navbar-brand" href="index.php">
-            <img src="https://via.placeholder.com/30x30.png?text=LOGO" alt="LOGO">
-            Projet Web
+        <a class="navbar-brand fw-bold fst-italic" href="index.php">
+            check•this•out<span class="navbar-brand fw-light">fit</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
