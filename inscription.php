@@ -24,14 +24,16 @@
             if(filter_var($email, FILTER_VALIDATE_EMAIL)){
                 if(strlen($password)>=8){
                     if($password==$passconfirm){
-                        $reqmail = $bdd->prepare('SELECT email FROM clients WHERE email = ?');
+                        $reqmail = $bdd->prepare('SELECT email FROM Clients WHERE email = ?');
                         $reqmail-> execute(array($email));
                         if($reqmail->rowcount() == 0){
                             $password = password_hash($password,PASSWORD_DEFAULT);
-                            $insertmbr = $bdd->prepare('INSERT INTO clients (email,motDePasse,nom,prenom,ville,adresse,telephone) VALUES(?,?,?,?,?,?,?)');
+                            $insertmbr = $bdd->prepare('INSERT INTO Clients (email,motDePasse,nom,prenom,ville,adresse,telephone) VALUES(?,?,?,?,?,?,?)');
                             $insertmbr->execute(array($email,$password,$nom,$prenom,$ville,$adresse,$telephone));
+                            ob_start();
                             echo '<div class="alert alert-success" role="alert">Compte créé ! Vous allez être redirigé...</div>';
                             header('refresh:3; url=connexion.php');
+                            ob_end_flush();
                         } else $erreur="Adresse mail déjà utilisée";
                     } else $erreur="Vos mots de passe ne correspondent pas";
                 } else $erreur="Le mot de passe doit faire plus de 8 carractères";
