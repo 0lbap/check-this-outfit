@@ -56,7 +56,7 @@
                         echo '<th class="col-2 table-' . $couleur . '">' . $commande['etat'] . '</th>';
                         echo '</tr>';
 
-                        $getlignescommandes=$bdd->prepare("SELECT * FROM LignesCommandes,Produits WHERE LignesCommandes.idProduit = Produits.idProduit AND idCommande=?");
+                        $getlignescommandes=$bdd->prepare("SELECT * FROM Lignescommandes,Produits WHERE Lignescommandes.idProduit = Produits.idProduit AND idCommande=?");
                         $getlignescommandes->execute(array($commande['idCommande']));
                         $lignescommandesdata=$getlignescommandes->fetchAll();
 
