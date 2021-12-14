@@ -30,7 +30,7 @@
                 <div class="col-5 col-md-4 col-lg-6 position-relative">
                     <div class="position-absolute top-50 translate-middle-y">
                         <h3 class="fw-normal">Axel</h3>
-                        <h5 class="text-muted fw-light">Creator of JQuery</h5>
+                        <h5 class="text-muted fw-light">Co-fondateur</h5>
                     </div>
                 </div>
             </div>
@@ -41,7 +41,7 @@
                 <div class="col-5 col-md-4 col-lg-6 position-relative">
                     <div class="position-absolute top-50 translate-middle-y">
                         <h3 class="fw-normal">Pablo</h3>
-                        <h5 class="text-muted fw-light">Javascript CEO</h5>
+                        <h5 class="text-muted fw-light">Co-fondateur</h5>
                     </div>
                 </div>
             </div>
