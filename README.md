@@ -9,9 +9,9 @@ Projet de l'UE HAI305I Programation Web.
 
 ## Visiter le site
 
-Nous avons hébergé notre site et vous pouvez y accéder à l'URL https://check-this-outfit.fr/ !
+Nous avons hébergé notre site et vous pouvez y accéder à l'URL https://check-this-outfit.fr !
 
-## Installation
+## Installation locale
 
 > Prérequis : Serveur web PHP et MySQL comme WAMP, MAMP ou LAMP.
 
