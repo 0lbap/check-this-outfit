@@ -37,7 +37,7 @@
                     </div>
                     <div class="col-md-9">
                         <h3>Livraison rapide</h3>
-                        <p>Nos livraisons sont parmis les plus sûres et les plus rapides du marché. En effet, près de 90% de nos clients en sont satifsait !</p>
+                        <p>Nos livraisons sont parmi les plus sûres et les plus rapides du marché. En effet, près de 90% de nos clients en sont satifsaits !</p>
                     </div>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                     </div>
                     <div class="col-md-9">
                         <h3>Articles de qualité</h3>
-                        <p>Nos articles sont neufs et achetés directement à nos fournisseurs de confiance. De plus, ils sont transportés par notre équipe certifiée, ce qui réduit le risque de perte ou de mauvais état.</p>
+                        <p>Nos articles sont neufs et achetés directement chez nos fournisseurs de confiance. De plus, ils sont transportés par notre équipe certifiée, ce qui réduit le risque de perte ou de mauvais état.</p>
                     </div>
                 </div>
             </div>
@@ -64,7 +64,7 @@
                     </div>
                     <div class="col-md-9">
                         <h3>Service après vente</h3>
-                        <p>Vous n'êtes pas satifsait par un article acheté chez nous ? Ce n'est pas grave, vous avez 2 mois pour le renvoyer et ainsi bénéficier d'un coupon de réduction !</p>
+                        <p>Vous n'êtes pas satifsait par un article acheté chez nous ? Ce n'est pas grave, vous avez 2 mois pour l'échanger ou bénéficier d'un coupon de réduction !</p>
                     </div>
                 </div>
             </div>
