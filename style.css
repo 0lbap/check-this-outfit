@@ -2,14 +2,6 @@ body{
     background-color: rgb(250, 250, 250);
 }
 
-.cardcontainer{
-    display: contents;
-    margin: auto;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    width: 90%;
-}
-
 .infocard{
     margin: 0 auto;
     background-color: transparent;
@@ -18,7 +10,6 @@ body{
 
 #ic1{
     background-color: #59CAD1;
-    width: 100vw;
     height: 33vh;
     animation: cardfade 0.5s ease 0s 1;
     animation-fill-mode: forwards;
@@ -26,7 +17,6 @@ body{
 
 #ic2{
     background-color: #C682AC;
-    width: 100vw;
     height: 33vh;
     animation: cardfade 0.5s ease 0.1s 1;
     animation-fill-mode: forwards;
@@ -34,7 +24,6 @@ body{
 
 #ic3{
     background-color: #96BD57;
-    width: 100vw;
     height: 33vh;
     animation: cardfade 0.5s ease 0.2s 1;
     animation-fill-mode: forwards;
@@ -82,13 +71,11 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    width: 100vw;
     height: 100vh;
 }
 
 .second-screen{
     background-color: #96BD57;
-    width: 100vw;
     height: 100vh;
 }
 
